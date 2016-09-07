@@ -64,7 +64,7 @@ void SidneyMove(irr::scene::IAnimatedMeshSceneNode *node_sydney, MyEventReceiver
 	}
 }
 
-void createCamera3rdPersonCamera(IrrlichtDevice *device, irr::scene::IAnimatedMeshSceneNode *node_sydney, float &zdirection, float &direction)
+void create3rdPersonCamera(IrrlichtDevice *device, irr::scene::IAnimatedMeshSceneNode *node_sydney, float &zdirection, float &direction)
 {
 	core::position2d<f32> cursorPos = device->getCursorControl()->getRelativePosition();
 	scene::ICameraSceneNode* camera = device->getSceneManager()->getActiveCamera();
@@ -238,7 +238,7 @@ int main()
 	if (device->isWindowActive())
 	{
 		SidneyMove(node_sydney, &receiver);
-		createCamera3rdPersonCamera(device, node_sydney, zdirection, direction);
+		create3rdPersonCamera(device, node_sydney, zdirection, direction);
 
 		driver->beginScene(true, true, video::SColor(255,113,113,133));
 		smgr->drawAll();
