@@ -36,7 +36,7 @@ void Turn (IAnimatedMeshSceneNode *obj, f32 x, f32 y, f32 z)
 {
 	obj -> setRotation(obj -> getRotation() + vector3df(x, y, z));
 }
-void SidneyMove(irr::scene::IAnimatedMeshSceneNode *node_sydney, MyEventReceiver* receiver)
+void SidneyMove(irr::scene::IAnimatedMeshSceneNode *node_sydney, MyEventReceiver *receiver)
 {
 	core::vector3df nodePosition_sydney = node_sydney->getPosition();
 
@@ -62,6 +62,34 @@ void SidneyMove(irr::scene::IAnimatedMeshSceneNode *node_sydney, MyEventReceiver
 		//Turn(node_sydney, 0, 5, 0);
 		oMove(node_sydney, 0, 10, 0);
 	}
+}
+
+void createCamera3rdPersonCamera(IrrlichtDevice *device, irr::scene::IAnimatedMeshSceneNode *node_sydney, float &zdirection, float &direction)
+{
+	core::position2d<f32> cursorPos = device->getCursorControl()->getRelativePosition();
+	scene::ICameraSceneNode* camera = device->getSceneManager()->getActiveCamera();
+	core::vector3df cameraPos = camera->getAbsolutePosition();
+	
+	float change_x = ( cursorPos.X - 0.5 ) * 256.0f;
+	float change_y = ( cursorPos.Y - 0.5 ) * 256.0f;
+	direction += change_x;
+	zdirection -= change_y;
+	if( zdirection < -90 )
+		zdirection = -90;
+	else
+		if( zdirection > 90 )
+			zdirection = 90;
+	device->getCursorControl()->setPosition( 0.5f, 0.5f );
+	
+	core::vector3df playerPos = node_sydney->getPosition();
+	
+	float xf = playerPos.X - cos( direction * core::PI / 180.0f ) * 64.0f;
+	float yf = playerPos.Y - sin( zdirection * core::PI / 180.0f ) * 64.0f;
+	float zf = playerPos.Z + sin( direction * core::PI / 180.0f ) * 64.0f;
+	
+	camera->setPosition( core::vector3df( xf, yf, zf ) );
+	camera->setTarget( core::vector3df( playerPos.X, playerPos.Y+25.0f, playerPos.Z ) );
+	node_sydney->setRotation( core::vector3df( 0, direction, 0 ) );
 }
 
 int main()
@@ -194,11 +222,11 @@ int main()
 	 
 	device->getCursorControl()->setVisible(false);
 	
-	scene::IAnimatedMeshSceneNode* node = 0;
-	video::SMaterial material;
-	
+//	scene::IAnimatedMeshSceneNode* node = 0;
+//	video::SMaterial material;
+//	material.Wireframe = true;	
 //////////////////////////////////////////////////////////////////////Игровой цикл
-	material.Wireframe = true;
+
 	
 	// This is the movemen speed in units per second.
 	
@@ -210,33 +238,8 @@ int main()
 	if (device->isWindowActive())
 	{
 		SidneyMove(node_sydney, &receiver);
+		createCamera3rdPersonCamera(device, node_sydney, zdirection, direction);
 
-//////////////////////////////////////////////////////////позиция камеры вид от 3 лица
-		core::position2d<f32> cursorPos = device->getCursorControl()->getRelativePosition();
-		scene::ICameraSceneNode* camera = device->getSceneManager()->getActiveCamera();
-		core::vector3df cameraPos = camera->getAbsolutePosition();
-		
-		float change_x = ( cursorPos.X - 0.5 ) * 256.0f;
-		float change_y = ( cursorPos.Y - 0.5 ) * 256.0f;
-		direction += change_x;
-		zdirection -= change_y;
-		if( zdirection < -90 )
-			zdirection = -90;
-		else
-			if( zdirection > 90 )
-				zdirection = 90;
-		device->getCursorControl()->setPosition( 0.5f, 0.5f );
-		
-		core::vector3df playerPos = node_sydney->getPosition();
-		
-		float xf = playerPos.X - cos( direction * core::PI / 180.0f ) * 64.0f;
-		float yf = playerPos.Y - sin( zdirection * core::PI / 180.0f ) * 64.0f;
-		float zf = playerPos.Z + sin( direction * core::PI / 180.0f ) * 64.0f;
-		
-		camera->setPosition( core::vector3df( xf, yf, zf ) );
-		camera->setTarget( core::vector3df( playerPos.X, playerPos.Y+25.0f, playerPos.Z ) );
-		node_sydney->setRotation( core::vector3df( 0, direction, 0 ) );
-		
 		driver->beginScene(true, true, video::SColor(255,113,113,133));
 		smgr->drawAll();
 	       	device->getGUIEnvironment()->drawAll(); // draw the gui environment (the logo)
