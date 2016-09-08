@@ -1,6 +1,0 @@
-irrlicht = -lIrrlicht -lGL -lGLU -lXrandr -lXext -lX11
-
-rule cpp
-     command = clang++ -g $irrlicht $in -o $out
-
-build run: cpp main.cpp
