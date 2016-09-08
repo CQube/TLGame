@@ -33,11 +33,12 @@ void Camera::update()
 
 	irr::core::vector3df playerPos = focus_node->getPosition();
 
-	float xf = playerPos.X - cos(degToRad(direction)) * 64.0f;
-	float yf = playerPos.Y - sin(degToRad(zdirection)) * 64.0f;
-	float zf = playerPos.Z + sin(degToRad(direction)) * 64.0f;
+	irr::core::vector3df newCameraPos;
+        newCameraPos.X = playerPos.X - cos(degToRad(direction)) * 64.0f;
+        newCameraPos.Y = playerPos.Y - sin(degToRad(zdirection)) * 64.0f;
+        newCameraPos.Z = playerPos.Z + sin(degToRad(direction)) * 64.0f;
 	
-	camera->setPosition(irr::core::vector3df(xf, yf, zf));
+	camera->setPosition(newCameraPos);
 	camera->setTarget(playerPos);
 	focus_node->setRotation(irr::core::vector3df(0, direction, 0));
 }
