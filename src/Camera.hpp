@@ -13,6 +13,8 @@ private:
 	irr::core::position2d<irr::f32> cursorPos;
 	irr::scene::ICameraSceneNode *camera;
 	irr::core::vector3df cameraPos;
+
+	float degToRad(float degre);
 	
 public:
 	Camera(irr::IrrlichtDevice *device);
