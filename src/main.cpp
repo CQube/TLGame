@@ -1,6 +1,7 @@
 #include <irrlicht/irrlicht.h>
 #include <irrlicht/driverChoice.h>
 #include "MyEventReceiver.h"
+#include "Camera.hpp"
 
 using namespace irr;
 using namespace io;
@@ -18,11 +19,10 @@ enum
 
 const f32 MOVEMENT_SPEED = 5.f;
 
-void moveCameraControl();
 void oMove (IAnimatedMeshSceneNode *obj, f32 x, f32 y, f32 z);
 void Turn (IAnimatedMeshSceneNode *obj, f32 x, f32 y, f32 z);
 void SidneyMove(irr::scene::IAnimatedMeshSceneNode *node_sydney, MyEventReceiver *receiver);
-void create3rdPersonCamera(IrrlichtDevice *device, irr::scene::IAnimatedMeshSceneNode *node_sydney, float &zdirection, float &direction);
+void set3rdPersonCamera(IrrlichtDevice *device, irr::scene::IAnimatedMeshSceneNode *node_sydney, float &zdirection, float &direction);
 
 int main()
 {	
@@ -58,7 +58,7 @@ int main()
 	}
 */
 
-	scene::ICameraSceneNode* camera = smgr->addCameraSceneNode(0, core::vector3df(-50.0f,50.0f,0.0f) ,
+	scene::ICameraSceneNode* SCamera = smgr->addCameraSceneNode(0, core::vector3df(-50.0f,50.0f,0.0f) ,
 								   core::vector3df(0.0f,0.0f,0.0f), -1);
 	
 //Создание объектов
@@ -88,11 +88,11 @@ int main()
 	meta->addTriangleSelector(selector);
 		
 	ISceneNodeAnimator *anim =
-		smgr->createCollisionResponseAnimator(meta, camera, vector3df (60, 100, 60),
+		smgr->createCollisionResponseAnimator(meta, SCamera, vector3df (60, 100, 60),
 						      vector3df (0, -10, 0), vector3df (0, 0, 0)); 
 		
 	selector -> drop();
-	camera -> addAnimator(anim);
+	SCamera -> addAnimator(anim);
 	anim -> drop();
 	
 
@@ -100,7 +100,7 @@ int main()
 	ILightSceneNode * lamp = smgr->addLightSceneNode(0, vector3df(0, 100, 0),
 							 SColorf(0.8f, 0.8f, 0.6f));
 	lamp -> setRadius(400);
-	lamp -> setParent(camera);
+	lamp -> setParent(SCamera);
 	
 
 	//create skybox and skydome
@@ -162,16 +162,16 @@ int main()
 	
 	// This is the movemen speed in units per second.
 	
-	float direction = 0;
-	float zdirection = 0;
-
+	Camera* camera = new Camera(device);
+	camera->setFocusMesh(node_sydney);
 	
 	while(device->run())
-	if (device->isWindowActive())
+		//if (device->isWindowActive())
 	{
 		SidneyMove(node_sydney, &receiver);
-		create3rdPersonCamera(device, node_sydney, zdirection, direction);
 
+		camera->update();
+		
 		driver->beginScene(true, true, video::SColor(255,113,113,133));
 		smgr->drawAll();
 	       	device->getGUIEnvironment()->drawAll(); // draw the gui environment (the logo)
@@ -180,14 +180,12 @@ int main()
 	        
 	}
 	
+	
 	device->drop();
 	
 	return 0;
 }
 
-
-
-void moveCameraControl();
 void oMove (IAnimatedMeshSceneNode *obj, f32 x, f32 y, f32 z)
 {
 	vector3df move;
@@ -227,32 +225,4 @@ void SidneyMove(irr::scene::IAnimatedMeshSceneNode *node_sydney, MyEventReceiver
 		//Turn(node_sydney, 0, 5, 0);
 		oMove(node_sydney, 0, 10, 0);
 	}
-}
-
-void create3rdPersonCamera(IrrlichtDevice *device, irr::scene::IAnimatedMeshSceneNode *node_sydney, float &zdirection, float &direction)
-{
-	core::position2d<f32> cursorPos = device->getCursorControl()->getRelativePosition();
-	scene::ICameraSceneNode* camera = device->getSceneManager()->getActiveCamera();
-	core::vector3df cameraPos = camera->getAbsolutePosition();
-	
-	float change_x = ( cursorPos.X - 0.5 ) * 256.0f;
-	float change_y = ( cursorPos.Y - 0.5 ) * 256.0f;
-	direction += change_x;
-	zdirection -= change_y;
-	if( zdirection < -90 )
-		zdirection = -90;
-	else
-		if( zdirection > 90 )
-			zdirection = 90;
-	device->getCursorControl()->setPosition( 0.5f, 0.5f );
-	
-	core::vector3df playerPos = node_sydney->getPosition();
-	
-	float xf = playerPos.X - cos( direction * core::PI / 180.0f ) * 64.0f;
-	float yf = playerPos.Y - sin( zdirection * core::PI / 180.0f ) * 64.0f;
-	float zf = playerPos.Z + sin( direction * core::PI / 180.0f ) * 64.0f;
-	
-	camera->setPosition( core::vector3df( xf, yf, zf ) );
-	camera->setTarget( core::vector3df( playerPos.X, playerPos.Y+25.0f, playerPos.Z ) );
-	node_sydney->setRotation( core::vector3df( 0, direction, 0 ) );
 }
