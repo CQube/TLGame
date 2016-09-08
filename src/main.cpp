@@ -19,78 +19,10 @@ enum
 const f32 MOVEMENT_SPEED = 5.f;
 
 void moveCameraControl();
-void oMove (IAnimatedMeshSceneNode *obj, f32 x, f32 y, f32 z)
-{
-	vector3df move;
-	matrix4 matrix;
-
-	move = vector3df(x, y, z);
-
-	matrix.setRotationDegrees(obj -> getRotation());
-	matrix.transformVect(move);
-
-	obj -> setPosition(obj -> getPosition() + move);
-}
-
-void Turn (IAnimatedMeshSceneNode *obj, f32 x, f32 y, f32 z)
-{
-	obj -> setRotation(obj -> getRotation() + vector3df(x, y, z));
-}
-void SidneyMove(irr::scene::IAnimatedMeshSceneNode *node_sydney, MyEventReceiver *receiver)
-{
-	core::vector3df nodePosition_sydney = node_sydney->getPosition();
-
-	if(receiver->IsKeyDown(irr::KEY_KEY_W)){
-		oMove(node_sydney, MOVEMENT_SPEED, 0, 0);
-	}
-
-	if(receiver->IsKeyDown(irr::KEY_KEY_S)){
-		oMove(node_sydney, -1 * MOVEMENT_SPEED, 0, 0);
-	}
-	        
-	if(receiver->IsKeyDown(irr::KEY_KEY_D)){
-		//Turn(node_sydney, 0, 5, 0);
-		oMove(node_sydney, 0, 0, -1 * MOVEMENT_SPEED / 3 * 2);
-	}
-		
-	if(receiver->IsKeyDown(irr::KEY_KEY_A)){
-		//Turn(node_sydney, 0, 0, 0);
-		oMove(node_sydney, 0, 0, MOVEMENT_SPEED / 3 * 2);
-	}
-
-	if(receiver->IsKeyDown(irr::KEY_KEY_V)){
-		//Turn(node_sydney, 0, 5, 0);
-		oMove(node_sydney, 0, 10, 0);
-	}
-}
-
-void create3rdPersonCamera(IrrlichtDevice *device, irr::scene::IAnimatedMeshSceneNode *node_sydney, float &zdirection, float &direction)
-{
-	core::position2d<f32> cursorPos = device->getCursorControl()->getRelativePosition();
-	scene::ICameraSceneNode* camera = device->getSceneManager()->getActiveCamera();
-	core::vector3df cameraPos = camera->getAbsolutePosition();
-	
-	float change_x = ( cursorPos.X - 0.5 ) * 256.0f;
-	float change_y = ( cursorPos.Y - 0.5 ) * 256.0f;
-	direction += change_x;
-	zdirection -= change_y;
-	if( zdirection < -90 )
-		zdirection = -90;
-	else
-		if( zdirection > 90 )
-			zdirection = 90;
-	device->getCursorControl()->setPosition( 0.5f, 0.5f );
-	
-	core::vector3df playerPos = node_sydney->getPosition();
-	
-	float xf = playerPos.X - cos( direction * core::PI / 180.0f ) * 64.0f;
-	float yf = playerPos.Y - sin( zdirection * core::PI / 180.0f ) * 64.0f;
-	float zf = playerPos.Z + sin( direction * core::PI / 180.0f ) * 64.0f;
-	
-	camera->setPosition( core::vector3df( xf, yf, zf ) );
-	camera->setTarget( core::vector3df( playerPos.X, playerPos.Y+25.0f, playerPos.Z ) );
-	node_sydney->setRotation( core::vector3df( 0, direction, 0 ) );
-}
+void oMove (IAnimatedMeshSceneNode *obj, f32 x, f32 y, f32 z);
+void Turn (IAnimatedMeshSceneNode *obj, f32 x, f32 y, f32 z);
+void SidneyMove(irr::scene::IAnimatedMeshSceneNode *node_sydney, MyEventReceiver *receiver);
+void create3rdPersonCamera(IrrlichtDevice *device, irr::scene::IAnimatedMeshSceneNode *node_sydney, float &zdirection, float &direction);
 
 int main()
 {	
@@ -251,4 +183,76 @@ int main()
 	device->drop();
 	
 	return 0;
+}
+
+
+
+void moveCameraControl();
+void oMove (IAnimatedMeshSceneNode *obj, f32 x, f32 y, f32 z)
+{
+	vector3df move;
+	matrix4 matrix;
+
+	move = vector3df(x, y, z);
+
+	matrix.setRotationDegrees(obj -> getRotation());
+	matrix.transformVect(move);
+
+	obj -> setPosition(obj -> getPosition() + move);
+}
+
+void Turn (IAnimatedMeshSceneNode *obj, f32 x, f32 y, f32 z)
+{
+	obj -> setRotation(obj -> getRotation() + vector3df(x, y, z));
+}
+void SidneyMove(irr::scene::IAnimatedMeshSceneNode *node_sydney, MyEventReceiver *receiver)
+{
+	core::vector3df nodePosition_sydney = node_sydney->getPosition();
+
+	if(receiver->IsKeyDown(irr::KEY_KEY_W)){
+		oMove(node_sydney, MOVEMENT_SPEED, 0, 0);
+	}
+	if(receiver->IsKeyDown(irr::KEY_KEY_S)){
+		oMove(node_sydney, -1 * MOVEMENT_SPEED, 0, 0);
+	}
+        if(receiver->IsKeyDown(irr::KEY_KEY_D)){
+		//Turn(node_sydney, 0, 5, 0);
+		oMove(node_sydney, 0, 0, -1 * MOVEMENT_SPEED / 3 * 2);
+	}
+	if(receiver->IsKeyDown(irr::KEY_KEY_A)){
+		//Turn(node_sydney, 0, 0, 0);
+		oMove(node_sydney, 0, 0, MOVEMENT_SPEED / 3 * 2);
+	}
+	if(receiver->IsKeyDown(irr::KEY_KEY_V)){
+		//Turn(node_sydney, 0, 5, 0);
+		oMove(node_sydney, 0, 10, 0);
+	}
+}
+
+void create3rdPersonCamera(IrrlichtDevice *device, irr::scene::IAnimatedMeshSceneNode *node_sydney, float &zdirection, float &direction)
+{
+	core::position2d<f32> cursorPos = device->getCursorControl()->getRelativePosition();
+	scene::ICameraSceneNode* camera = device->getSceneManager()->getActiveCamera();
+	core::vector3df cameraPos = camera->getAbsolutePosition();
+	
+	float change_x = ( cursorPos.X - 0.5 ) * 256.0f;
+	float change_y = ( cursorPos.Y - 0.5 ) * 256.0f;
+	direction += change_x;
+	zdirection -= change_y;
+	if( zdirection < -90 )
+		zdirection = -90;
+	else
+		if( zdirection > 90 )
+			zdirection = 90;
+	device->getCursorControl()->setPosition( 0.5f, 0.5f );
+	
+	core::vector3df playerPos = node_sydney->getPosition();
+	
+	float xf = playerPos.X - cos( direction * core::PI / 180.0f ) * 64.0f;
+	float yf = playerPos.Y - sin( zdirection * core::PI / 180.0f ) * 64.0f;
+	float zf = playerPos.Z + sin( direction * core::PI / 180.0f ) * 64.0f;
+	
+	camera->setPosition( core::vector3df( xf, yf, zf ) );
+	camera->setTarget( core::vector3df( playerPos.X, playerPos.Y+25.0f, playerPos.Z ) );
+	node_sydney->setRotation( core::vector3df( 0, direction, 0 ) );
 }
