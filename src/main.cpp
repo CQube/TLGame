@@ -2,6 +2,7 @@
 #include <irrlicht/driverChoice.h>
 #include "MyEventReceiver.h"
 #include "Camera.hpp"
+//#include "Character.hpp"
 
 using namespace irr;
 using namespace io;
@@ -140,8 +141,9 @@ int main()
 	//  	node_sydney->setMaterialTexture(0, driver->getTexture("../media/sydney.bmp"));
         // }
 	
-	irr::scene::IAnimatedMeshSceneNode *node_sydney = createCharacter("../media/sydney.md2", "../media/sydney.bmp",
-									  smgr, driver, core::vector3df(180, 200, 0));
+	IAnimatedMeshSceneNode *node_sydney;
+	node_sydney->createCharacter("../media/sydney.md2", "../media/sydney.bmp", smgr, driver,
+				     core::vector3df(180, 200, 0));
 	node_sydney->setScale(core::vector3df(1.5f));
 	node_sydney->setMD2Animation(scene::EMAT_STAND);
 ///////////////////////////////////////////////////////Cтолкнование для модели
@@ -248,3 +250,4 @@ irr::scene::IAnimatedMeshSceneNode *createCharacter(const io::path & mesh_path, 
 	}
 	return node;
 }
+
