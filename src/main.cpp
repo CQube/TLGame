@@ -142,7 +142,7 @@ int main()
         // }
 	
 	IAnimatedMeshSceneNode *node_sydney;
-	node_sydney->createCharacter("../media/sydney.md2", "../media/sydney.bmp", smgr, driver,
+	node_sydney = createCharacter("../media/sydney.md2", "../media/sydney.bmp", smgr, driver,
 				     core::vector3df(180, 200, 0));
 	node_sydney->setScale(core::vector3df(1.5f));
 	node_sydney->setMD2Animation(scene::EMAT_STAND);
