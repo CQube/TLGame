@@ -141,9 +141,13 @@ int main()
 	//  	node_sydney->setMaterialTexture(0, driver->getTexture("../media/sydney.bmp"));
         // }
 	
-	IAnimatedMeshSceneNode *node_sydney;
-	node_sydney = createCharacter("../media/sydney.md2", "../media/sydney.bmp", smgr, driver,
+	IAnimatedMeshSceneNode *node_sydney = createCharacter("../media/sydney.md2", "../media/sydney.bmp", smgr, driver,
 				     core::vector3df(180, 200, 0));
+	
+/*	Character *Sydney = new Character(device);
+	Sydney->createCharacter("../media/sydney.md2", "../media/sydney.bmp",// smgr, driver,
+				     core::vector3df(180, 200, 0));
+				     IAnimatedMeshSceneNode *node_sydney = Sydney->getNode();*/
 	node_sydney->setScale(core::vector3df(1.5f));
 	node_sydney->setMD2Animation(scene::EMAT_STAND);
 ///////////////////////////////////////////////////////Cтолкнование для модели
