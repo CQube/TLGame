@@ -158,6 +158,12 @@ int main()
 		anim->drop(); 
 	}
 
+	Character *Ninja = new Character(device);
+       	IAnimatedMeshSceneNode *node_ninja = Ninja->createCharacter("../media/ninja.b3d", vector3df(3071, 400, 1970), selector);
+
+	Character *Dwarf = new Character(device);
+	IAnimatedMeshSceneNode *node_dwarf = Dwarf->createCharacter("../media/dwarf.x", vector3df(2760, 480, 3705), selector);
+	node_dwarf->setRotation(vector3df(0, 20, 0));
 ///////////////////////////////////////////////////////Скрыть курсор
 	 
 	device->getCursorControl()->setVisible(false);
@@ -174,6 +180,10 @@ int main()
 		//if (device->isWindowActive())
 	{
 		SidneyMove(node_sydney, &receiver);
+		if(receiver.IsKeyDown(irr::KEY_KEY_Q)){
+			vector3df pos_node = node_sydney->getPosition();
+			std::cout << pos_node.X<<" " << pos_node.Y<<" " << pos_node.Z << std::endl;
+		}
 
 		camera->update();
 		

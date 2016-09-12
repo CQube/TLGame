@@ -15,11 +15,10 @@ private:
 	
 public:
 	Character(irr::IrrlichtDevice *_device);
-//to do-	irr::scene::IAnimatedMeshSceneNode *createCharacter(const io::path &mesh_path);
-
 //to do-	irr::scene::IAnimatedMeshSceneNode *getNode();
 	irr::scene::IAnimatedMeshSceneNode *createCharacter(const irr::io::path &mesh_path, const irr::io::path &texture_path, irr::core::vector3df position);
-	
+	irr::scene::IAnimatedMeshSceneNode *createCharacter(const irr::io::path &mesh_path, irr::core::vector3df position, irr::scene::ITriangleSelector *selector);
+
 };
 
 
