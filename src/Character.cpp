@@ -7,11 +7,6 @@ Character::Character(irr::IrrlichtDevice *_device)
 	driver = device->getVideoDriver();
 }
 
-/*irr::scene::IAnimatedMeshSceneNode *getNode()
-{
-	return node;
-}
-*/
 irr::scene::IAnimatedMeshSceneNode *Character::createCharacter(const irr::io::path &mesh_path, const irr::io::path &texture_path, irr::core::vector3df position)
 {
 	irr::scene::IAnimatedMesh *mesh = smgr->getMesh(mesh_path);
