@@ -2,7 +2,7 @@
 #include <irrlicht/driverChoice.h>
 #include "MyEventReceiver.h"
 #include "Camera.hpp"
-//#include "Character.hpp"
+#include "Character.hpp"
 
 using namespace irr;
 using namespace io;
@@ -24,8 +24,7 @@ void oMove (IAnimatedMeshSceneNode *obj, f32 x, f32 y, f32 z);
 void Turn (IAnimatedMeshSceneNode *obj, f32 x, f32 y, f32 z);
 void SidneyMove(irr::scene::IAnimatedMeshSceneNode *node_sydney, MyEventReceiver *receiver);
 void set3rdPersonCamera(IrrlichtDevice *device, irr::scene::IAnimatedMeshSceneNode *node_sydney, float &zdirection, float &direction);
-irr::scene::IAnimatedMeshSceneNode *createCharacter(const io::path & mesh_path, const io::path & texture_path, scene::ISceneManager* smgr,
-						    video::IVideoDriver* driver, core::vector3df position);
+
 int main()
 {	
 	MyEventReceiver receiver;
@@ -141,13 +140,11 @@ int main()
 	//  	node_sydney->setMaterialTexture(0, driver->getTexture("../media/sydney.bmp"));
         // }
 	
-	IAnimatedMeshSceneNode *node_sydney = createCharacter("../media/sydney.md2", "../media/sydney.bmp", smgr, driver,
-				     core::vector3df(180, 200, 0));
+//	IAnimatedMeshSceneNode *node_sydney = createCharacter("../media/sydney.md2", "../media/sydney.bmp", smgr, driver,
+//				     core::vector3df(180, 200, 0));
 	
-/*	Character *Sydney = new Character(device);
-	Sydney->createCharacter("../media/sydney.md2", "../media/sydney.bmp",// smgr, driver,
-				     core::vector3df(180, 200, 0));
-				     IAnimatedMeshSceneNode *node_sydney = Sydney->getNode();*/
+	Character *Sydney = new Character(device);
+	IAnimatedMeshSceneNode *node_sydney = Sydney->createCharacter("../media/sydney.md2", "../media/sydney.bmp", vector3df(180, 200, 0) );
 	node_sydney->setScale(core::vector3df(1.5f));
 	node_sydney->setMD2Animation(scene::EMAT_STAND);
 ///////////////////////////////////////////////////////Cтолкнование для модели
@@ -234,24 +231,3 @@ void SidneyMove(irr::scene::IAnimatedMeshSceneNode *node_sydney, MyEventReceiver
 		oMove(node_sydney, 0, 10, 0);
 	}
 }
-
-irr::scene::IAnimatedMeshSceneNode *createCharacter(const io::path & mesh_path, const io::path & texture_path, scene::ISceneManager* smgr,
-						    video::IVideoDriver* driver, core::vector3df position)
-{
-	irr::scene::IAnimatedMesh *mesh = smgr->getMesh(mesh_path);
-	
-	if(!mesh)
-	{
-		//	device->drop();
-		return 0;
-	}
-	irr::scene::IAnimatedMeshSceneNode *node = smgr->addAnimatedMeshSceneNode(mesh, 0, IDFlag_IsPickable);
-       	if(node)
-	{
-		node->setMaterialFlag(video::EMF_LIGHTING, false);
-		node->setPosition(position);
-	       	node->setMaterialTexture(0, driver->getTexture(texture_path));
-	}
-	return node;
-}
-

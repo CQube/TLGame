@@ -6,4 +6,5 @@ rule cpp
      command = clang++ -g $irrlicht $in -o $out
 
 build Camera.o: cppl Camera.cpp
-build run.out: cpp main.cpp Camera.o
+build Character.o: cppl Character.cpp
+build run.out: cpp main.cpp Camera.o Character.cpp
