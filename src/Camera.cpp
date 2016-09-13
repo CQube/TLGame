@@ -10,7 +10,7 @@ Camera::Camera(irr::IrrlichtDevice *_device)
 	zdirection = 0;
 }
 
-void Camera::setFocusMesh(irr::scene::IAnimatedMeshSceneNode *new_focus_node)
+void Camera::setFocusMesh(AnimNode *new_focus_node)
 {
 	focus_node = new_focus_node;
 }
@@ -43,6 +43,7 @@ void Camera::update()
 	focus_node->setRotation(irr::core::vector3df(0, direction, 0));
 }
 
+//TODO move to some "Core" class
 float Camera::degToRad(float degre)
 {
 	return degre * irr::core::PI / 180.0f;

@@ -3,7 +3,9 @@
 #include "MyEventReceiver.h"
 #include "Camera.hpp"
 #include "Character.hpp"
+#include "typedefs.hpp"
 
+using namespace tl;
 using namespace irr;
 using namespace io;
 using namespace core;
@@ -20,10 +22,9 @@ enum
 
 const f32 MOVEMENT_SPEED = 5.f;
 
-void oMove (IAnimatedMeshSceneNode *obj, f32 x, f32 y, f32 z);
-void Turn (IAnimatedMeshSceneNode *obj, f32 x, f32 y, f32 z);
-void SidneyMove(irr::scene::IAnimatedMeshSceneNode *node_sydney, MyEventReceiver *receiver);
-void set3rdPersonCamera(IrrlichtDevice *device, irr::scene::IAnimatedMeshSceneNode *node_sydney, float &zdirection, float &direction);
+void oMove (AnimNode *obj, f32 x, f32 y, f32 z);
+void Turn (AnimNode *obj, f32 x, f32 y, f32 z);
+void SidneyMove(AnimNode *node_sydney, MyEventReceiver *receiver);
 
 int main()
 {	
@@ -80,7 +81,7 @@ int main()
 	terrain->scaleTexture(10.0f, 20.0f); 
 	
 
-	//create triangle selector for the terrain
+	//Create triangle selector for the terrain
 	ITriangleSelector *selector = smgr->createTerrainTriangleSelector(terrain, 0);
 	terrain->setTriangleSelector(selector);
 	
@@ -97,14 +98,14 @@ int main()
 	anim -> drop();
 	
 
-	//lighting
+	//Lighting
 	ILightSceneNode * lamp = smgr->addLightSceneNode(0, vector3df(0, 100, 0),
 							 SColorf(0.8f, 0.8f, 0.6f));
 	lamp -> setRadius(400);
 	lamp -> setParent(SCamera);
 	
 
-	//create skybox and skydome
+	//Create skybox and skydome
 	driver -> setTextureCreationFlag(ETCF_CREATE_MIP_MAPS, false);
 
 	ISceneNode *skybox = smgr->addSkyBoxSceneNode(
@@ -119,35 +120,12 @@ int main()
 
 	driver -> setTextureCreationFlag(ETCF_CREATE_MIP_MAPS, true);
 
-	
-//////////////////////////Создание модели, которой и будет осуществляться управление
-	// irr::scene::IAnimatedMesh *mesh_sydney = smgr->getMesh("../media/sydney.md2");
-	
-	// if(!mesh_sydney)
-	// {
-	//  	device->drop();
-	//  	return 1;
-	// }
-	// irr::scene::IAnimatedMeshSceneNode *node_sydney = smgr->addAnimatedMeshSceneNode(mesh_sydney,
-	//  										 0, IDFlag_IsPickable);
-	
-	// if(node_sydney)
-	// {
-	//  	node_sydney->setMaterialFlag(video::EMF_LIGHTING, false);
-	// 	node_sydney->setMD2Animation(scene::EMAT_STAND);
-	//  	node_sydney->setPosition(core::vector3df(180, 200, 0));
-	// 	node_sydney->setScale(core::vector3df(1.5f));
-	//  	node_sydney->setMaterialTexture(0, driver->getTexture("../media/sydney.bmp"));
-        // }
-	
-//	IAnimatedMeshSceneNode *node_sydney = createCharacter("../media/sydney.md2", "../media/sydney.bmp", smgr, driver,
-//				     core::vector3df(180, 200, 0));
-	
 	Character *Sydney = new Character(device);
-	IAnimatedMeshSceneNode *node_sydney = Sydney->createCharacter("../media/sydney.md2", "../media/sydney.bmp", vector3df(180, 200, 0) );
+	AnimNode *node_sydney = Sydney->createCharacter("../media/sydney.md2", "../media/sydney.bmp", vector3df(180, 200, 0) );
 	node_sydney->setScale(core::vector3df(1.5f));
 	node_sydney->setMD2Animation(scene::EMAT_STAND);
-///////////////////////////////////////////////////////Cтолкнование для модели
+
+	//Collisions
 	if (selector)
 	{
 		scene::ISceneNodeAnimator* anim = smgr->createCollisionResponseAnimator(
@@ -159,32 +137,30 @@ int main()
 	}
 
 	Character *Ninja = new Character(device);
-       	IAnimatedMeshSceneNode *node_ninja = Ninja->createCharacter("../media/ninja.b3d", vector3df(3071, 400, 1970), selector);
+       	AnimNode *node_ninja = Ninja->createCharacter("../media/ninja.b3d", vector3df(3071, 400, 1970), selector);
 
 	Character *Dwarf = new Character(device);
-	IAnimatedMeshSceneNode *node_dwarf = Dwarf->createCharacter("../media/dwarf.x", vector3df(2760, 480, 3705), selector);
+        AnimNode *node_dwarf = Dwarf->createCharacter("../media/dwarf.x", vector3df(2760, 480, 3705), selector);
 	node_dwarf->setRotation(vector3df(0, 20, 0));
-///////////////////////////////////////////////////////Скрыть курсор
 	 
 	device->getCursorControl()->setVisible(false);
 	
 //	scene::IAnimatedMeshSceneNode* node = 0;
 //	video::SMaterial material;
-//	material.Wireframe = true;	
-//////////////////////////////////////////////////////////////////////Игровой цикл
+//	material.Wireframe = true;
 
 	Camera* camera = new Camera(device);
 	camera->setFocusMesh(node_sydney);
 	
 	while(device->run())
-		//if (device->isWindowActive())
+	if (device->isWindowActive())
 	{
 		SidneyMove(node_sydney, &receiver);
 		if(receiver.IsKeyDown(irr::KEY_KEY_Q)){
 			vector3df pos_node = node_sydney->getPosition();
 			std::cout << pos_node.X<<" " << pos_node.Y<<" " << pos_node.Z << std::endl;
 		}
-
+		
 		camera->update();
 		
 		driver->beginScene(true, true, video::SColor(255,113,113,133));
@@ -201,7 +177,7 @@ int main()
 	return 0;
 }
 
-void oMove (IAnimatedMeshSceneNode *obj, f32 x, f32 y, f32 z)
+void oMove (AnimNode *obj, f32 x, f32 y, f32 z)
 {
 	vector3df move;
 	matrix4 matrix;
@@ -214,11 +190,12 @@ void oMove (IAnimatedMeshSceneNode *obj, f32 x, f32 y, f32 z)
 	obj -> setPosition(obj -> getPosition() + move);
 }
 
-void Turn (IAnimatedMeshSceneNode *obj, f32 x, f32 y, f32 z)
+void Turn (AnimNode *obj, f32 x, f32 y, f32 z)
 {
 	obj -> setRotation(obj -> getRotation() + vector3df(x, y, z));
 }
-void SidneyMove(irr::scene::IAnimatedMeshSceneNode *node_sydney, MyEventReceiver *receiver)
+
+void SidneyMove(AnimNode *node_sydney, MyEventReceiver *receiver)
 {
 	core::vector3df nodePosition_sydney = node_sydney->getPosition();
 

@@ -12,7 +12,7 @@ Character::Character(irr::IrrlichtDevice *_device)
 	return node;
 }
 */
-irr::scene::IAnimatedMeshSceneNode *Character::createCharacter(const irr::io::path &mesh_path, const irr::io::path &texture_path, irr::core::vector3df position)
+tl::AnimNode *Character::createCharacter(const irr::io::path &mesh_path, const irr::io::path &texture_path, irr::core::vector3df position)
 {
 	irr::scene::IAnimatedMesh *mesh = smgr->getMesh(mesh_path);
 	
@@ -31,9 +31,9 @@ irr::scene::IAnimatedMeshSceneNode *Character::createCharacter(const irr::io::pa
 	return node;
 }
 
-irr::scene::IAnimatedMeshSceneNode *Character::createCharacter(const irr::io::path &mesh_path, irr::core::vector3df position, irr::scene::ITriangleSelector *selector)
+tl::AnimNode *Character::createCharacter(const irr::io::path &mesh_path, irr::core::vector3df position, irr::scene::ITriangleSelector *selector)
 {
-	irr::scene::IAnimatedMeshSceneNode *node = smgr->addAnimatedMeshSceneNode(smgr->getMesh(mesh_path), 0, 1<<0 | 1<<1);
+	tl::AnimNode *node = smgr->addAnimatedMeshSceneNode(smgr->getMesh(mesh_path), 0, 1<<0 | 1<<1);
 	node->setScale(irr::core::vector3df(10));
 	node->setPosition(position);
         node->setRotation(irr::core::vector3df(0,-160,0));
