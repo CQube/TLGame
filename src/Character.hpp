@@ -2,6 +2,7 @@
 #define CHARACTER_HPP
 
 #include <irrlicht/irrlicht.h>
+#include "typedefs.hpp"
 
 class Character 
 {
@@ -11,13 +12,16 @@ private:
 	irr::scene::ISceneManager *smgr;
 	irr::video::IVideoDriver *driver;
 	irr::core::vector3df position;
-	irr::scene::IAnimatedMeshSceneNode *node;
+	tl::AnimNode *node;
 	
 public:
 	Character(irr::IrrlichtDevice *_device);
-//to do-	irr::scene::IAnimatedMeshSceneNode *getNode();
-	irr::scene::IAnimatedMeshSceneNode *createCharacter(const irr::io::path &mesh_path, const irr::io::path &texture_path, irr::core::vector3df position);
-	irr::scene::IAnimatedMeshSceneNode *createCharacter(const irr::io::path &mesh_path, irr::core::vector3df position, irr::scene::ITriangleSelector *selector);
+
+	//TODO  
+        //tl::AnimNode *getNode();
+	
+	tl::AnimNode *createCharacter(const irr::io::path &mesh_path, const irr::io::path &texture_path, irr::core::vector3df position);
+	tl::AnimNode *createCharacter(const irr::io::path &mesh_path, irr::core::vector3df position, irr::scene::ITriangleSelector *selector);
 
 };
 
