@@ -4,6 +4,7 @@
 #include "Camera.hpp"
 #include "Character.hpp"
 #include "typedefs.hpp"
+#include "Level.hpp"
 
 using namespace tl;
 using namespace irr;
@@ -21,7 +22,6 @@ enum
 };
 
 const f32 MOVEMENT_SPEED = 5.f;
-
 void oMove (AnimNode *obj, f32 x, f32 y, f32 z);
 void Turn (AnimNode *obj, f32 x, f32 y, f32 z);
 void SidneyMove(AnimNode *node_sydney, MyEventReceiver *receiver);
@@ -29,103 +29,27 @@ void SidneyMove(AnimNode *node_sydney, MyEventReceiver *receiver);
 int main()
 {	
 	MyEventReceiver receiver;
-	
 	IrrlichtDevice* device =
 		createDevice(EDT_OPENGL, core::dimension2d<u32>(640, 480),
 			     16, false, false, false, &receiver);
 	
 	if (device == 0)
 		return 1;
-	
+	irr::scene::ITriangleSelector *selector;
 	video::IVideoDriver* driver = device->getVideoDriver();
 	scene::ISceneManager* smgr = device->getSceneManager();
-
-//   MAP LOAD	
-/*	device->getFileSystem()->addFileArchive("pictures/map-20kdm2.pk3");  
-	scene::IAnimatedMesh* q3level_mesh = smgr->getMesh("20kdm2.bsp");
-	scene::IMeshSceneNode* node_map = 0;
-	
-
-	if (q3level_mesh)
-		node_map = smgr->addOctreeSceneNode(q3level_mesh->getMesh(0), 0, IDFlag_IsPickable);
-	scene::ITriangleSelector* selector = 0;
-	
-	if (node_map)
-	{
-		node_map->setPosition(core::vector3df(-1350,-130,-1400));
-		
-		selector = smgr->createOctreeTriangleSelector(
-			node_map->getMesh(), node_map, 128);
-		node_map->setTriangleSelector(selector);
-	}
-*/
-
 	scene::ICameraSceneNode* SCamera = smgr->addCameraSceneNode(0, core::vector3df(-50.0f,50.0f,0.0f) ,
 								   core::vector3df(0.0f,0.0f,0.0f), -1);
 	
-//Создание объектов
-	ITerrainSceneNode *terrain = smgr->addTerrainSceneNode(
-		"../media/terrain-heightmap.bmp",
-		0,                    //родитель
-		-1,                   //ID
-		vector3df(0, 0, 0),   //позиция
-		vector3df(0, 0, 0),   //поворот
-		vector3df(40, 2, 40), //масштаб
-		SColor(255, 255, 255, 255),//цвета вершин
-		5,                    //максимум LOD
-		ETPS_17,              //размер патча
-		4);                   //коэфф. размытия
-	terrain->setMaterialTexture(0 , driver->getTexture("../media/terrain-texture.jpg"));
-	terrain->setMaterialTexture(1 , driver->getTexture("../media/detailmap3.jpg"));
-	terrain->setMaterialType(EMT_DETAIL_MAP);
-	terrain->scaleTexture(10.0f, 20.0f); 
-	
-
-	//Create triangle selector for the terrain
-	ITriangleSelector *selector = smgr->createTerrainTriangleSelector(terrain, 0);
-	terrain->setTriangleSelector(selector);
-	
-	IMetaTriangleSelector *meta;
-	meta = smgr->createMetaTriangleSelector();
-	meta->addTriangleSelector(selector);
-		
-	ISceneNodeAnimator *anim =
-		smgr->createCollisionResponseAnimator(meta, SCamera, vector3df (60, 100, 60),
-						      vector3df (0, -10, 0), vector3df (0, 0, 0)); 
-		
-	selector -> drop();
-	SCamera -> addAnimator(anim);
-	anim -> drop();
-	
-
-	//Lighting
-	ILightSceneNode * lamp = smgr->addLightSceneNode(0, vector3df(0, 100, 0),
-							 SColorf(0.8f, 0.8f, 0.6f));
-	lamp -> setRadius(400);
-	lamp -> setParent(SCamera);
-	
-
-	//Create skybox and skydome
-	driver -> setTextureCreationFlag(ETCF_CREATE_MIP_MAPS, false);
-
-	ISceneNode *skybox = smgr->addSkyBoxSceneNode(
-		driver->getTexture("../media/irrlicht2_up.jpg"),
-		driver->getTexture("../media/irrlicht2_dn.jpg"),
-		driver->getTexture("../media/irrlicht2_lf.jpg"),
-		driver->getTexture("../media/irrlicht2_rt.jpg"),
-		driver->getTexture("../media/irrlicht2_ft.jpg"),
-		driver->getTexture("../media/irrlicht2_bk.jpg"));
-
-	ISceneNode *skydome = smgr -> addSkyDomeSceneNode(driver -> getTexture("../media/skydome.jpg"), 16, 8, 0.95f, 2.0f);
-
-	driver -> setTextureCreationFlag(ETCF_CREATE_MIP_MAPS, true);
+	Level *level = new Level(device, selector);
+	level->loadLevel();
 
 	Character *Sydney = new Character(device);
 	AnimNode *node_sydney = Sydney->createCharacter("../media/sydney.md2", "../media/sydney.bmp", vector3df(180, 200, 0) );
 	node_sydney->setScale(core::vector3df(1.5f));
 	node_sydney->setMD2Animation(scene::EMAT_STAND);
 
-	//Collisions
+/*	//Collisions
 	if (selector)
 	{
 		scene::ISceneNodeAnimator* anim = smgr->createCollisionResponseAnimator(
@@ -135,7 +59,7 @@ int main()
 		node_sydney->addAnimator(anim);
 		anim->drop(); 
 	}
-
+*/
 	Character *Ninja = new Character(device);
        	AnimNode *node_ninja = Ninja->createCharacter("../media/ninja.b3d", vector3df(3071, 400, 1970), selector);
 
@@ -145,10 +69,6 @@ int main()
 	 
 	device->getCursorControl()->setVisible(false);
 	
-//	scene::IAnimatedMeshSceneNode* node = 0;
-//	video::SMaterial material;
-//	material.Wireframe = true;
-
 	Camera* camera = new Camera(device);
 	camera->setFocusMesh(node_sydney);
 	

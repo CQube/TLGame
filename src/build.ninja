@@ -7,4 +7,5 @@ rule cpp
 
 build Camera.o: cppl Camera.cpp
 build Character.o: cppl Character.cpp
-build run.out: cpp main.cpp Camera.o Character.cpp
+build Level.o: cppl Level.cpp
+build run.out: cpp main.cpp Camera.o Character.o Level.o
