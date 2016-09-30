@@ -1,6 +1,6 @@
 #include "Level.hpp"
 
-Level::Level(irr::IrrlichtDevice *_device, irr::scene::ITriangleSelector *_selector)
+Level::Level(irr::IrrlichtDevice *_device)
 {
 	device = _device;
 	driver = device->getVideoDriver();
@@ -10,7 +10,7 @@ Level::Level(irr::IrrlichtDevice *_device, irr::scene::ITriangleSelector *_selec
 	skydome = NULL;
 	skybox = NULL;
 	lamp = NULL;
-	selector = _selector;
+	selector = NULL;
 	meta = NULL;
 	anim = NULL;
 	terrain = NULL;
@@ -19,7 +19,6 @@ Level::Level(irr::IrrlichtDevice *_device, irr::scene::ITriangleSelector *_selec
 
 void Level::addTerrainSceneNode()
 {
-	
 	terrain = smgr->addTerrainSceneNode(
 		"../media/terrain-heightmap.bmp",
 		0,                    //родитель
@@ -35,21 +34,7 @@ void Level::addTerrainSceneNode()
 	terrain->setMaterialTexture(1 , driver->getTexture("../media/detailmap3.jpg"));
 	terrain->setMaterialType(irr::video::EMT_DETAIL_MAP);
 	terrain->scaleTexture(10.0f, 20.0f); 
-	
 
-	//Create triangle selector for the terrain
-	selector = smgr->createTerrainTriangleSelector(terrain, 0);
-	terrain->setTriangleSelector(selector);
-	
-	meta = smgr->createMetaTriangleSelector();
-	meta->addTriangleSelector(selector);
-		
-	anim = smgr->createCollisionResponseAnimator(meta, SCamera, irr::core::vector3df (60, 100, 60),
-						      irr::core::vector3df (0, -10, 0), irr::core::vector3df (0, 0, 0)); 
-		
-	selector->drop();
-	SCamera->addAnimator(anim);
-	anim->drop();
 }
 
 
@@ -57,15 +42,14 @@ void Level::addLightning() //надо указательно на smgr
 {
        	//Lighting
 	lamp = smgr->addLightSceneNode(0, irr::core::vector3df(0, 100, 0),
-							 irr::video::SColorf(0.8f, 0.8f, 0.6f));
-	lamp->setRadius(400);
-	lamp->setParent(SCamera);	
+				       irr::video::SColorf(0.8f, 0.8f, 0.6f));
+	lamp -> setRadius(400);
+	lamp -> setParent(SCamera);      
+
 }
 
 void Level::addSkyBox()
 {
-	driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, false);
-	
 	skybox = smgr->addSkyBoxSceneNode(
 		driver->getTexture("../media/irrlicht2_up.jpg"),
 		driver->getTexture("../media/irrlicht2_dn.jpg"),
@@ -77,11 +61,10 @@ void Level::addSkyBox()
 
 void Level::addSkyDome()
 {
-		skydome = smgr->addSkyDomeSceneNode(driver -> getTexture("../media/skydome.jpg"), 16, 8, 0.95f, 2.0f);
-
+	skydome = smgr->addSkyDomeSceneNode(driver -> getTexture("../media/skydome.jpg"), 16, 8, 0.95f, 2.0f);
 }
 
-void Level::loadLevel()
+irr::scene::ITriangleSelector *Level::loadLevel()
 {
 	SCamera = smgr->addCameraSceneNode(0, irr::core::vector3df(-50.0f,50.0f,0.0f) ,
 					   irr::core::vector3df(0.0f,0.0f,0.0f), -1);
@@ -90,4 +73,5 @@ void Level::loadLevel()
 	addSkyBox();
 	addSkyDome();
 	driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
+	return selector;
 }
