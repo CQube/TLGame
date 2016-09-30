@@ -18,12 +18,12 @@ private:
 	irr::scene::ITerrainSceneNode *terrain;
 
 public:
-	Level(irr::IrrlichtDevice *_device, irr::scene::ITriangleSelector *_selector);
+	Level(irr::IrrlichtDevice *_device);
 	void addTerrainSceneNode();
 	void addLightning();
 	void addSkyBox();
 	void addSkyDome();
-	void loadLevel();
+	irr::scene::ITriangleSelector *loadLevel();
 };
 
 #endif //LEVEL
