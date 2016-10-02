@@ -22,7 +22,6 @@ public:
 	
 	tl::AnimNode *createCharacter(const irr::io::path &mesh_path, const irr::io::path &texture_path, irr::core::vector3df position);
 	tl::AnimNode *createCharacter(const irr::io::path &mesh_path, irr::core::vector3df position, irr::scene::ITriangleSelector *selector);
-
 };
 
 
