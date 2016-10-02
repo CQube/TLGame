@@ -33,8 +33,10 @@ void Level::addTerrainSceneNode()
 	terrain->setMaterialTexture(0 , driver->getTexture("../media/terrain-texture.jpg"));
 	terrain->setMaterialTexture(1 , driver->getTexture("../media/detailmap3.jpg"));
 	terrain->setMaterialType(irr::video::EMT_DETAIL_MAP);
-	terrain->scaleTexture(10.0f, 20.0f); 
+	terrain->scaleTexture(10.0f, 20.0f);
 
+	selector = smgr->createTerrainTriangleSelector(terrain, 0);
+	terrain->setTriangleSelector(selector);
 }
 
 
@@ -64,7 +66,7 @@ void Level::addSkyDome()
 	skydome = smgr->addSkyDomeSceneNode(driver -> getTexture("../media/skydome.jpg"), 16, 8, 0.95f, 2.0f);
 }
 
-irr::scene::ITriangleSelector *Level::loadLevel()
+void Level::loadLevel()
 {
 	SCamera = smgr->addCameraSceneNode(0, irr::core::vector3df(-50.0f,50.0f,0.0f) ,
 					   irr::core::vector3df(0.0f,0.0f,0.0f), -1);
@@ -73,5 +75,9 @@ irr::scene::ITriangleSelector *Level::loadLevel()
 	addSkyBox();
 	addSkyDome();
 	driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
+}
+
+irr::scene::ITriangleSelector *Level::getTrSelector()
+{
 	return selector;
 }

@@ -44,9 +44,10 @@ int main()
 	video::IVideoDriver* driver = device->getVideoDriver();
 	scene::ISceneManager* smgr = device->getSceneManager();
 
-//	Level *level = new Level(device);                 // class
-//	ITriangleSelector *selector = level->loadLevel();
-	ITriangleSelector *selector = addAll(device);     // function
+	Level *level = new Level(device);
+	level->loadLevel();
+	ITriangleSelector *selector = level->getTrSelector();
+//	ITriangleSelector *selector = addAll(device);     // function
  	
 	Character *Sydney = new Character(device);
 	AnimNode *node_sydney = Sydney->createCharacter("../media/sydney.md2", "../media/sydney.bmp", vector3df(180, 200, 0) );

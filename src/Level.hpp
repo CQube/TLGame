@@ -5,17 +5,17 @@
 class Level
 {
 private:
-	irr::IrrlichtDevice *device;
-	irr::video::IVideoDriver* driver;
-	irr::scene::ICameraSceneNode* SCamera;
-	irr::scene::ISceneManager* smgr;
-	irr::scene::ISceneNode *skydome;
-	irr::scene::ISceneNode *skybox;
-	irr::scene::ILightSceneNode * lamp;
-	irr::scene::ITriangleSelector *selector;
-	irr::scene::IMetaTriangleSelector *meta;
-	irr::scene::ISceneNodeAnimator *anim;
-	irr::scene::ITerrainSceneNode *terrain;
+	irr::IrrlichtDevice                   *device;
+	irr::video::IVideoDriver              *driver;
+	irr::scene::ICameraSceneNode          *SCamera;
+	irr::scene::ISceneManager             *smgr;
+	irr::scene::ISceneNode                *skydome;
+	irr::scene::ISceneNode                *skybox;
+	irr::scene::ILightSceneNode           *lamp;
+	irr::scene::ITriangleSelector         *selector;
+	irr::scene::IMetaTriangleSelector     *meta;
+	irr::scene::ISceneNodeAnimator        *anim;
+	irr::scene::ITerrainSceneNode         *terrain;
 
 public:
 	Level(irr::IrrlichtDevice *_device);
@@ -23,7 +23,8 @@ public:
 	void addLightning();
 	void addSkyBox();
 	void addSkyDome();
-	irr::scene::ITriangleSelector *loadLevel();
+	void loadLevel();
+	irr::scene::ITriangleSelector *getTrSelector();
 };
 
 #endif //LEVEL
