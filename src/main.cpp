@@ -8,6 +8,7 @@
 
 using namespace tl;
 
+//TODO mv to new file
 void oMove (AnimNode *obj, f32 x, f32 y, f32 z);
 void Turn (AnimNode *obj, f32 x, f32 y, f32 z);
 void SidneyMove(AnimNode *node_sydney, MyEventReceiver *receiver);
@@ -36,6 +37,7 @@ int main()
 	node_sydney->setMD2Animation(scene::EMAT_STAND);
 
 	//Collisions
+	//TODO Move to Sydney
 	if (selector)
 	{
 		scene::ISceneNodeAnimator* anim = smgr->createCollisionResponseAnimator(
@@ -46,7 +48,9 @@ int main()
 		anim->drop(); 
 	}
 
+	//TODO mv createCharacter to constructor 
 	Character *Ninja = new Character(device);
+	//TODO add getAnimNode
        	AnimNode *node_ninja = Ninja->createCharacter("../media/ninja.b3d", vector3df(3071, 400, 1970), selector);
 
 	Character *Dwarf = new Character(device);
@@ -57,7 +61,8 @@ int main()
 	
 	Camera* camera = new Camera(device);
 	camera->setFocusMesh(node_sydney);
-	
+
+	//TODO mv to Level
 	while(device->run())
 	if (device->isWindowActive())
 	{
@@ -90,15 +95,15 @@ void oMove (AnimNode *obj, f32 x, f32 y, f32 z)
 
 	move = vector3df(x, y, z);
 
-	matrix.setRotationDegrees(obj -> getRotation());
+	matrix.setRotationDegrees(obj->getRotation());
 	matrix.transformVect(move);
 
-	obj -> setPosition(obj -> getPosition() + move);
+	obj->setPosition(obj->getPosition() + move);
 }
 
 void Turn (AnimNode *obj, f32 x, f32 y, f32 z)
 {
-	obj -> setRotation(obj -> getRotation() + vector3df(x, y, z));
+	obj->setRotation(obj->getRotation() + vector3df(x, y, z));
 }
 
 void SidneyMove(AnimNode *node_sydney, MyEventReceiver *receiver)
