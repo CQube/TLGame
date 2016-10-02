@@ -8,4 +8,5 @@ rule cpp
 build Game/Camera.o: cppl Game/Camera.cpp
 build Game/Character.o: cppl Game/Character.cpp
 build Game/Level.o: cppl Game/Level.cpp
-build run.out: cpp main.cpp Game/Camera.o Game/Character.o Game/Level.o
+build Game/MainHero.o: cppl Game/MainHero.cpp
+build run.out: cpp main.cpp Game/Camera.o Game/Character.o Game/Level.o Game/MainHero.o

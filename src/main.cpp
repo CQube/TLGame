@@ -5,6 +5,7 @@
 #include "Game/Character.hpp"
 #include "typedefs.hpp"
 #include "Game/Level.hpp"
+#include "Game/MainHero.hpp"
 
 using namespace tl;
 
@@ -31,23 +32,13 @@ int main()
 	level->loadLevel();
 	ITriangleSelector *selector = level->getTrSelector();
  	
-	Character *sydney = new Character(device, "../media/sydney.md2", "../media/sydney.bmp", vector3df(180, 200, 0));
+	MainHero *sydney = new MainHero(device, "../media/sydney.md2", "../media/sydney.bmp", vector3df(180, 200, 0));
 	AnimNode *node_sydney = sydney->getAnimNode();
 	node_sydney->setScale(core::vector3df(1.5f));
 	node_sydney->setMD2Animation(scene::EMAT_STAND);
 
-	//Collisions
-	//TODO Move to Sydney
-	if (selector)
-	{
-		scene::ISceneNodeAnimator* anim = smgr->createCollisionResponseAnimator(
-			selector, node_sydney, core::vector3df(30,50,30),
-			core::vector3df(0,-10,0), core::vector3df(0,0,0));
-		selector->drop();
-		node_sydney->addAnimator(anim);
-		anim->drop(); 
-	}
-
+	sydney->addTrSelector(selector);
+	
         Character *ninja = new Character(device, "../media/ninja.b3d", vector3df(3071, 400, 1970), selector);
         AnimNode *node_ninja = ninja->getAnimNode();
 	
@@ -64,7 +55,7 @@ int main()
 	while(device->run())
 	if (device->isWindowActive())
 	{
-		SidneyMove(node_sydney, &receiver);
+		sydney->Move(&receiver);
 		if(receiver.IsKeyDown(irr::KEY_KEY_Q)){
 			vector3df pos_node = node_sydney->getPosition();
 			std::cout << pos_node.X<<" " << pos_node.Y<<" " << pos_node.Z << std::endl;
@@ -84,46 +75,4 @@ int main()
 	device->drop();
 	
 	return 0;
-}
-
-void oMove (AnimNode *obj, f32 x, f32 y, f32 z)
-{
-	vector3df move;
-	matrix4 matrix;
-
-	move = vector3df(x, y, z);
-
-	matrix.setRotationDegrees(obj->getRotation());
-	matrix.transformVect(move);
-
-	obj->setPosition(obj->getPosition() + move);
-}
-
-void Turn (AnimNode *obj, f32 x, f32 y, f32 z)
-{
-	obj->setRotation(obj->getRotation() + vector3df(x, y, z));
-}
-
-void SidneyMove(AnimNode *node_sydney, MyEventReceiver *receiver)
-{
-	core::vector3df nodePosition_sydney = node_sydney->getPosition();
-
-	if(receiver->IsKeyDown(irr::KEY_KEY_W)){
-		oMove(node_sydney, MOVEMENT_SPEED, 0, 0);
-	}
-	if(receiver->IsKeyDown(irr::KEY_KEY_S)){
-		oMove(node_sydney, -1 * MOVEMENT_SPEED, 0, 0);
-	}
-        if(receiver->IsKeyDown(irr::KEY_KEY_D)){
-		//Turn(node_sydney, 0, 5, 0);
-		oMove(node_sydney, 0, 0, -1 * MOVEMENT_SPEED / 3 * 2);
-	}
-	if(receiver->IsKeyDown(irr::KEY_KEY_A)){
-		//Turn(node_sydney, 0, 0, 0);
-		oMove(node_sydney, 0, 0, MOVEMENT_SPEED / 3 * 2);
-	}
-	if(receiver->IsKeyDown(irr::KEY_KEY_V)){
-		//Turn(node_sydney, 0, 5, 0);
-		oMove(node_sydney, 0, 10, 0);
-	}
 }

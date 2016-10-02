@@ -6,8 +6,7 @@
 
 class Character 
 {
-private:
-	
+protected:
 	irr::IrrlichtDevice *device;
 	irr::scene::ISceneManager *smgr;
 	irr::video::IVideoDriver *driver;
