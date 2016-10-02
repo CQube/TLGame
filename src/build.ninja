@@ -5,7 +5,7 @@ rule cppl
 rule cpp
      command = clang++ -g $irrlicht $in -o $out
 
-build Camera.o: cppl Camera.cpp
-build Character.o: cppl Character.cpp
-build Level.o: cppl Level.cpp
-build run.out: cpp main.cpp Camera.o Character.o Level.o
+build Game/Camera.o: cppl Game/Camera.cpp
+build Game/Character.o: cppl Game/Character.cpp
+build Game/Level.o: cppl Game/Level.cpp
+build run.out: cpp main.cpp Game/Camera.o Game/Character.o Game/Level.o
