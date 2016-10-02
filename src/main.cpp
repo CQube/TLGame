@@ -1,26 +1,13 @@
 #include <irrlicht/irrlicht.h>
 #include <irrlicht/driverChoice.h>
 #include "MyEventReceiver.h"
-#include "Camera.hpp"
-#include "Character.hpp"
+#include "Game/Camera.hpp"
+#include "Game/Character.hpp"
 #include "typedefs.hpp"
-#include "Level.hpp"
+#include "Game/Level.hpp"
+
 using namespace tl;
-using namespace irr;
-using namespace io;
-using namespace core;
-using namespace video;
-using namespace gui;
-using namespace scene;
 
-enum
-{
-	ID_IsNotPickable = 0,                                                
-	IDFlag_IsPickable = 1 << 0,
-	IDFlag_IsHighlightable = 1 << 1
-};
-
-const f32 MOVEMENT_SPEED = 5.f;
 void oMove (AnimNode *obj, f32 x, f32 y, f32 z);
 void Turn (AnimNode *obj, f32 x, f32 y, f32 z);
 void SidneyMove(AnimNode *node_sydney, MyEventReceiver *receiver);
