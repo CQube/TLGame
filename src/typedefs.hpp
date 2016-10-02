@@ -9,7 +9,7 @@ namespace tl
 	using namespace scene;
 	using namespace gui;
 	using namespace video;
-
+	using namespace io;
 	
 	enum
 	{

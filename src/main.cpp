@@ -31,8 +31,8 @@ int main()
 	level->loadLevel();
 	ITriangleSelector *selector = level->getTrSelector();
  	
-	Character *Sydney = new Character(device);
-	AnimNode *node_sydney = Sydney->createCharacter("../media/sydney.md2", "../media/sydney.bmp", vector3df(180, 200, 0) );
+	Character *sydney = new Character(device, "../media/sydney.md2", "../media/sydney.bmp", vector3df(180, 200, 0));
+	AnimNode *node_sydney = sydney->getAnimNode();
 	node_sydney->setScale(core::vector3df(1.5f));
 	node_sydney->setMD2Animation(scene::EMAT_STAND);
 
@@ -48,13 +48,11 @@ int main()
 		anim->drop(); 
 	}
 
-	//TODO mv createCharacter to constructor 
-	Character *Ninja = new Character(device);
-	//TODO add getAnimNode
-       	AnimNode *node_ninja = Ninja->createCharacter("../media/ninja.b3d", vector3df(3071, 400, 1970), selector);
-
-	Character *Dwarf = new Character(device);
-        AnimNode *node_dwarf = Dwarf->createCharacter("../media/dwarf.x", vector3df(2760, 480, 3705), selector);
+        Character *ninja = new Character(device, "../media/ninja.b3d", vector3df(3071, 400, 1970), selector);
+        AnimNode *node_ninja = ninja->getAnimNode();
+	
+	Character *dwarf = new Character(device, "../media/dwarf.x", vector3df(2760, 480, 3705), selector);
+        AnimNode *node_dwarf = dwarf->getAnimNode();
 	node_dwarf->setRotation(vector3df(0, 20, 0));
 	 
 	device->getCursorControl()->setVisible(false);

@@ -15,13 +15,10 @@ private:
 	tl::AnimNode *node;
 	
 public:
-	Character(irr::IrrlichtDevice *_device);
+	Character(irr::IrrlichtDevice *_device, const tl::path &mesh_path, const tl::path &texture_path, tl::vector3df position);
+	Character(irr::IrrlichtDevice *_device, const tl::path &mesh_path, tl::vector3df position, tl::ITriangleSelector *selector);
 
-	//TODO  
-        //tl::AnimNode *getNode();
-	
-	tl::AnimNode *createCharacter(const irr::io::path &mesh_path, const irr::io::path &texture_path, irr::core::vector3df position);
-	tl::AnimNode *createCharacter(const irr::io::path &mesh_path, irr::core::vector3df position, irr::scene::ITriangleSelector *selector);
+	tl::AnimNode *getAnimNode();
 };
 
 
