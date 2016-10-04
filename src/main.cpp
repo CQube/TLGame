@@ -1,6 +1,6 @@
 #include <irrlicht/irrlicht.h>
 #include <irrlicht/driverChoice.h>
-#include "MyEventReceiver.h"
+#include "EventReceiver.h"
 #include "Game/Camera.hpp"
 #include "Game/Character.hpp"
 #include "typedefs.hpp"
@@ -8,11 +8,6 @@
 #include "Game/MainHero.hpp"
 
 using namespace tl;
-
-//TODO mv to new file
-void oMove (AnimNode *obj, f32 x, f32 y, f32 z);
-void Turn (AnimNode *obj, f32 x, f32 y, f32 z);
-void SidneyMove(AnimNode *node_sydney, MyEventReceiver *receiver);
 
 int main()
 {	

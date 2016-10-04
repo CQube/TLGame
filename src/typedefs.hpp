@@ -3,14 +3,15 @@
 
 namespace tl
 {
-	typedef irr::scene::IAnimatedMeshSceneNode AnimNode;
 	using namespace irr;
 	using namespace core;
 	using namespace scene;
 	using namespace gui;
 	using namespace video;
 	using namespace io;
-	
+
+	typedef IAnimatedMeshSceneNode AnimNode;
+
 	enum
 	{
 		ID_IsNotPickable = 0,                                                

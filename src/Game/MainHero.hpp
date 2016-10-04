@@ -4,7 +4,7 @@
 #include <irrlicht/irrlicht.h>
 #include "../typedefs.hpp"
 #include "Character.hpp"
-#include "../MyEventReceiver.h"
+#include "../EventReceiver.h"
 
 using namespace tl;
 
