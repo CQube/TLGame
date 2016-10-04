@@ -1,28 +1,13 @@
 #include <irrlicht/irrlicht.h>
 #include <irrlicht/driverChoice.h>
-#include "MyEventReceiver.h"
-#include "Camera.hpp"
+#include "EventReceiver.h"
+#include "Game/Camera.hpp"
+#include "Game/Character.hpp"
+#include "typedefs.hpp"
+#include "Game/Level.hpp"
+#include "Game/MainHero.hpp"
 
-using namespace irr;
-using namespace io;
-using namespace core;
-using namespace video;
-using namespace gui;
-using namespace scene;
-
-enum
-{
-	ID_IsNotPickable = 0,                                                
-	IDFlag_IsPickable = 1 << 0,
-	IDFlag_IsHighlightable = 1 << 1
-};
-
-const f32 MOVEMENT_SPEED = 5.f;
-
-void oMove (IAnimatedMeshSceneNode *obj, f32 x, f32 y, f32 z);
-void Turn (IAnimatedMeshSceneNode *obj, f32 x, f32 y, f32 z);
-void SidneyMove(irr::scene::IAnimatedMeshSceneNode *node_sydney, MyEventReceiver *receiver);
-void set3rdPersonCamera(IrrlichtDevice *device, irr::scene::IAnimatedMeshSceneNode *node_sydney, float &zdirection, float &direction);
+using namespace tl;
 
 int main()
 {	
@@ -38,143 +23,44 @@ int main()
 	video::IVideoDriver* driver = device->getVideoDriver();
 	scene::ISceneManager* smgr = device->getSceneManager();
 
-//   MAP LOAD	
-/*	device->getFileSystem()->addFileArchive("pictures/map-20kdm2.pk3");  
-	scene::IAnimatedMesh* q3level_mesh = smgr->getMesh("20kdm2.bsp");
-	scene::IMeshSceneNode* node_map = 0;
+	Level *level = new Level(device);
+	level->loadLevel();
+	ITriangleSelector *selector = level->getTrSelector();
+ 	
+	MainHero *sydney = new MainHero(device, "../media/sydney.md2", "../media/sydney.bmp", vector3df(180, 200, 0));
+	AnimNode *node_sydney = sydney->getAnimNode();
+	node_sydney->setScale(core::vector3df(1.5f));
+	node_sydney->setMD2Animation(scene::EMAT_STAND);
+
+	sydney->addTrSelector(selector);
 	
-
-	if (q3level_mesh)
-		node_map = smgr->addOctreeSceneNode(q3level_mesh->getMesh(0), 0, IDFlag_IsPickable);
-	scene::ITriangleSelector* selector = 0;
+        Character *ninja = new Character(device, "../media/ninja.b3d", vector3df(3071, 400, 1970), selector);
+        AnimNode *node_ninja = ninja->getAnimNode();
 	
-	if (node_map)
-	{
-		node_map->setPosition(core::vector3df(-1350,-130,-1400));
-		
-		selector = smgr->createOctreeTriangleSelector(
-			node_map->getMesh(), node_map, 128);
-		node_map->setTriangleSelector(selector);
-	}
-*/
-
-	scene::ICameraSceneNode* SCamera = smgr->addCameraSceneNode(0, core::vector3df(-50.0f,50.0f,0.0f) ,
-								   core::vector3df(0.0f,0.0f,0.0f), -1);
-	
-//Создание объектов
-	ITerrainSceneNode *terrain = smgr->addTerrainSceneNode(
-		"../media/terrain-heightmap.bmp",
-		0,                    //родитель
-		-1,                   //ID
-		vector3df(0, 0, 0),   //позиция
-		vector3df(0, 0, 0),   //поворот
-		vector3df(40, 2, 40), //масштаб
-		SColor(255, 255, 255, 255),//цвета вершин
-		5,                    //максимум LOD
-		ETPS_17,              //размер патча
-		4);                   //коэфф. размытия
-	terrain->setMaterialTexture(0 , driver->getTexture("../media/terrain-texture.jpg"));
-	terrain->setMaterialTexture(1 , driver->getTexture("../media/detailmap3.jpg"));
-	terrain->setMaterialType(EMT_DETAIL_MAP);
-	terrain->scaleTexture(10.0f, 20.0f); 
-	
-
-	//create triangle selector for the terrain
-	ITriangleSelector *selector = smgr->createTerrainTriangleSelector(terrain, 0);
-	terrain->setTriangleSelector(selector);
-	
-	IMetaTriangleSelector *meta;
-	meta = smgr->createMetaTriangleSelector();
-	meta->addTriangleSelector(selector);
-		
-	ISceneNodeAnimator *anim =
-		smgr->createCollisionResponseAnimator(meta, SCamera, vector3df (60, 100, 60),
-						      vector3df (0, -10, 0), vector3df (0, 0, 0)); 
-		
-	selector -> drop();
-	SCamera -> addAnimator(anim);
-	anim -> drop();
-	
-
-	//lighting
-	ILightSceneNode * lamp = smgr->addLightSceneNode(0, vector3df(0, 100, 0),
-							 SColorf(0.8f, 0.8f, 0.6f));
-	lamp -> setRadius(400);
-	lamp -> setParent(SCamera);
-	
-
-	//create skybox and skydome
-	driver -> setTextureCreationFlag(ETCF_CREATE_MIP_MAPS, false);
-
-	ISceneNode *skybox = smgr->addSkyBoxSceneNode(
-		driver->getTexture("../media/irrlicht2_up.jpg"),
-		driver->getTexture("../media/irrlicht2_dn.jpg"),
-		driver->getTexture("../media/irrlicht2_lf.jpg"),
-		driver->getTexture("../media/irrlicht2_rt.jpg"),
-		driver->getTexture("../media/irrlicht2_ft.jpg"),
-		driver->getTexture("../media/irrlicht2_bk.jpg"));
-
-	ISceneNode *skydome = smgr -> addSkyDomeSceneNode(driver -> getTexture("../media/skydome.jpg"), 16, 8, 0.95f, 2.0f);
-
-	driver -> setTextureCreationFlag(ETCF_CREATE_MIP_MAPS, true);
-
-	
-//////////////////////////Создание модели, которой и будет осуществляться управление
-	irr::scene::IAnimatedMesh *mesh_sydney = smgr->getMesh("../media/sydney.md2");
-	
-	if(!mesh_sydney)
-	{
-		device->drop();
-		return 1;
-	}
-	irr::scene::IAnimatedMeshSceneNode *node_sydney = smgr->addAnimatedMeshSceneNode(mesh_sydney,
-											 0, IDFlag_IsPickable);
-	
-	if(node_sydney)
-	{
-		node_sydney->setMaterialFlag(video::EMF_LIGHTING, false);
-		node_sydney->setMD2Animation(scene::EMAT_STAND);
-		node_sydney->setPosition(core::vector3df(180, 200, 0));
-		node_sydney->setScale(core::vector3df(1.5f));
-		node_sydney->setMaterialTexture(0, driver->getTexture("../media/sydney.bmp"));
-	}
-
-///////////////////////////////////////////////////////Cтолкнование для модели
-	if (selector)
-	{
-		scene::ISceneNodeAnimator* anim = smgr->createCollisionResponseAnimator(
-			selector, node_sydney, core::vector3df(30,50,30),
-			core::vector3df(0,-10,0), core::vector3df(0,0,0));
-		selector->drop();
-		node_sydney->addAnimator(anim);
-		anim->drop(); 
-	}
-
-///////////////////////////////////////////////////////Скрыть курсор
+	Character *dwarf = new Character(device, "../media/dwarf.x", vector3df(2760, 480, 3705), selector);
+        AnimNode *node_dwarf = dwarf->getAnimNode();
+	node_dwarf->setRotation(vector3df(0, 20, 0));
 	 
 	device->getCursorControl()->setVisible(false);
 	
-//	scene::IAnimatedMeshSceneNode* node = 0;
-//	video::SMaterial material;
-//	material.Wireframe = true;	
-//////////////////////////////////////////////////////////////////////Игровой цикл
-
-	
-	// This is the movemen speed in units per second.
-	
 	Camera* camera = new Camera(device);
 	camera->setFocusMesh(node_sydney);
-	
-	while(device->run())
-		//if (device->isWindowActive())
-	{
-		SidneyMove(node_sydney, &receiver);
 
+	//TODO mv to Level
+	while(device->run())
+	if (device->isWindowActive())
+	{
+		sydney->Move(&receiver);
+		if(receiver.IsKeyDown(irr::KEY_KEY_Q)){
+			vector3df pos_node = node_sydney->getPosition();
+			std::cout << pos_node.X<<" " << pos_node.Y<<" " << pos_node.Z << std::endl;
+		}
+		
 		camera->update();
 		
 		driver->beginScene(true, true, video::SColor(255,113,113,133));
 		smgr->drawAll();
-	       	device->getGUIEnvironment()->drawAll(); // draw the gui environment (the logo)
+	       	device->getGUIEnvironment()->drawAll();
 
 		driver->endScene();
 	        
@@ -184,45 +70,4 @@ int main()
 	device->drop();
 	
 	return 0;
-}
-
-void oMove (IAnimatedMeshSceneNode *obj, f32 x, f32 y, f32 z)
-{
-	vector3df move;
-	matrix4 matrix;
-
-	move = vector3df(x, y, z);
-
-	matrix.setRotationDegrees(obj -> getRotation());
-	matrix.transformVect(move);
-
-	obj -> setPosition(obj -> getPosition() + move);
-}
-
-void Turn (IAnimatedMeshSceneNode *obj, f32 x, f32 y, f32 z)
-{
-	obj -> setRotation(obj -> getRotation() + vector3df(x, y, z));
-}
-void SidneyMove(irr::scene::IAnimatedMeshSceneNode *node_sydney, MyEventReceiver *receiver)
-{
-	core::vector3df nodePosition_sydney = node_sydney->getPosition();
-
-	if(receiver->IsKeyDown(irr::KEY_KEY_W)){
-		oMove(node_sydney, MOVEMENT_SPEED, 0, 0);
-	}
-	if(receiver->IsKeyDown(irr::KEY_KEY_S)){
-		oMove(node_sydney, -1 * MOVEMENT_SPEED, 0, 0);
-	}
-        if(receiver->IsKeyDown(irr::KEY_KEY_D)){
-		//Turn(node_sydney, 0, 5, 0);
-		oMove(node_sydney, 0, 0, -1 * MOVEMENT_SPEED / 3 * 2);
-	}
-	if(receiver->IsKeyDown(irr::KEY_KEY_A)){
-		//Turn(node_sydney, 0, 0, 0);
-		oMove(node_sydney, 0, 0, MOVEMENT_SPEED / 3 * 2);
-	}
-	if(receiver->IsKeyDown(irr::KEY_KEY_V)){
-		//Turn(node_sydney, 0, 5, 0);
-		oMove(node_sydney, 0, 10, 0);
-	}
 }

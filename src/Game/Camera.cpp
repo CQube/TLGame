@@ -10,7 +10,7 @@ Camera::Camera(irr::IrrlichtDevice *_device)
 	zdirection = 0;
 }
 
-void Camera::setFocusMesh(irr::scene::IAnimatedMeshSceneNode *new_focus_node)
+void Camera::setFocusMesh(AnimNode *new_focus_node)
 {
 	focus_node = new_focus_node;
 }
@@ -33,12 +33,18 @@ void Camera::update()
 
 	irr::core::vector3df playerPos = focus_node->getPosition();
 
-	//TODO add convect func for degre to rad
-	float xf = playerPos.X - cos(direction * irr::core::PI / 180.0f) * 64.0f;
-	float yf = playerPos.Y - sin(zdirection * irr::core::PI / 180.0f) * 64.0f;
-	float zf = playerPos.Z + sin(direction * irr::core::PI / 180.0f) * 64.0f;
+	irr::core::vector3df newCameraPos;
+        newCameraPos.X = playerPos.X - cos(degToRad(direction)) * 64.0f;
+        newCameraPos.Y = playerPos.Y - sin(degToRad(zdirection)) * 64.0f;
+        newCameraPos.Z = playerPos.Z + sin(degToRad(direction)) * 64.0f;
 	
-	camera->setPosition(irr::core::vector3df(xf, yf, zf));
+	camera->setPosition(newCameraPos);
 	camera->setTarget(playerPos);
 	focus_node->setRotation(irr::core::vector3df(0, direction, 0));
+}
+
+//TODO move to some "Core" class
+float Camera::degToRad(float degre)
+{
+	return degre * irr::core::PI / 180.0f;
 }
