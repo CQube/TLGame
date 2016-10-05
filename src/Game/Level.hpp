@@ -1,6 +1,9 @@
 #ifndef LEVEL
 #define LEVEL
 #include <irrlicht/irrlicht.h>
+#include "../typedefs.hpp"
+#include "MainHero.hpp"
+#include "../MyEventReceiver.h"
 
 class Level
 {
@@ -16,15 +19,21 @@ private:
 	irr::scene::IMetaTriangleSelector     *meta;
 	irr::scene::ISceneNodeAnimator        *anim;
 	irr::scene::ITerrainSceneNode         *terrain;
-
+	MainHero                              *sydney;
+	MyEventReceiver                       *receiver;
+	
 public:
 	Level(irr::IrrlichtDevice *_device);
 	void addTerrainSceneNode();
 	void addLightning();
 	void addSkyBox();
 	void addSkyDome();
+	void addMainHero();
+	void addCharacters();
 	void loadLevel();
 	irr::scene::ITriangleSelector *getTrSelector();
+
+	void run();
 };
 
 #endif //LEVEL
