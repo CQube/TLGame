@@ -107,15 +107,18 @@ irr::scene::ITriangleSelector *Level::getTrSelector()
 }
 
 void Level::run()
-{
+{	
 	Camera* camera = new Camera(device);
 	camera->setFocusMesh(sydney->getAnimNode());
+//	UserInterface *interface = new UserInterface(device);                                  //раскомментить
+//	interface->loadInterface();                                                             //раскомментить
 	
-	while(device->run())
-	{
+	while(device->run()){
+        
 		sydney->Move(receiver);
 		if(receiver->IsKeyDown(irr::KEY_KEY_Q)){
-			vector3df pos_node = sydney->getAnimNode()->getPosition();
+			//	interface->menu();                                                //раскомментить
+                        //vector3df pos_node = sydney->getAnimNode()->getPosition();
 			//std::cout << pos_node.X<<" " << pos_node.Y<<" " << pos_node.Z << std::endl;
 		}
 		

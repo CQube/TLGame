@@ -4,6 +4,7 @@
 #include "../typedefs.hpp"
 #include "MainHero.hpp"
 #include "../EventReceiver.h"
+//#include "../UserInterface.hpp"        //раскомментить
 
 class Level
 {
