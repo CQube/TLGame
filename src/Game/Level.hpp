@@ -3,7 +3,7 @@
 #include <irrlicht/irrlicht.h>
 #include "../typedefs.hpp"
 #include "MainHero.hpp"
-#include "../MyEventReceiver.h"
+#include "../EventReceiver.h"
 
 class Level
 {
