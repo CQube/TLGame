@@ -1,5 +1,5 @@
-#ifndef UI
-#define UI
+#ifndef USER_INTERFACE_HPP
+#define USER_INTERFACE_HPP
 
 #include <irrlicht/irrlicht.h>
 #include "typedefs.hpp"
@@ -11,15 +11,15 @@ using namespace tl;
 class UserInterface
 {
 private:
-	IrrlichtDevice           *device;
-	IVideoDriver             *driver;
-	IGUIEnvironment             *env;
-	IGUISkin                   *skin;
-	IGUIFont                   *font;
-	SAppContext             *context;
+	IrrlichtDevice        *device;
+	IVideoDriver          *driver;
+	IGUIEnvironment       *env;
+	IGUISkin              *skin;
+	IGUIFont              *font;
+	SAppContext           *context;
 	IGUIScrollBar         *scrollbar;
-	IGUIListBox             *listbox; 
-//	UIEventReceiver        *receiver;
+	IGUIListBox           *listbox; 
+	UIEventReceiver       *receiver;
 public:
 	UserInterface(IrrlichtDevice * _device);
 	void addScrollbar();
@@ -31,4 +31,4 @@ public:
 
 
 
-#endif //USERINTERFACE
+#endif //USERINTERFACE_HPP

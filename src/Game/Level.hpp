@@ -4,7 +4,7 @@
 #include "../typedefs.hpp"
 #include "MainHero.hpp"
 #include "../EventReceiver.h"
-//#include "../UserInterface.hpp"        //раскомментить
+#include "../UserInterface.hpp"        //раскомментить
 
 class Level
 {
@@ -21,7 +21,7 @@ private:
 	irr::scene::ISceneNodeAnimator        *anim;
 	irr::scene::ITerrainSceneNode         *terrain;
 	MainHero                              *sydney;
-	MyEventReceiver                       *receiver;
+	EventReceiver                         *receiver;
 	
 public:
 	Level(irr::IrrlichtDevice *_device);

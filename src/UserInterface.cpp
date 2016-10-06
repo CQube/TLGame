@@ -4,11 +4,12 @@ UserInterface::UserInterface(IrrlichtDevice * _device)
 {
 	device = _device;
 	driver = device->getVideoDriver();
-	device->getGUIEnvironment();
+	env = device->getGUIEnvironment();
 	skin = env->getSkin();
 
 	//initialize context??? mb mv to method
 	// Store the appropriate data in a context structure.
+	context = new SAppContext();
 	context->device = device;
 	context->counter = 0;
 	context->listbox = listbox;
@@ -52,13 +53,13 @@ void UserInterface::addScrollbar()
 
 	// Store the appropriate data in a context structure.
 	// Then create the event receiver, giving it that context structure.
-		UIEventReceiver *receiver = new UIEventReceiver(context);
+	UIEventReceiver *receiver = new UIEventReceiver(context);
 
 	// And tell the device to use our custom event receiver.
 	device->setEventReceiver(receiver);	
 }
 
-
+// Not good need to change
 void UserInterface::menu() //in loop
 {
 	driver->beginScene(true, true, SColor(0,200,200,200));

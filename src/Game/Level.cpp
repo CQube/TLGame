@@ -15,7 +15,7 @@ Level::Level(irr::IrrlichtDevice *_device)
 	meta = NULL;
 	anim = NULL;
 	terrain = NULL;
-	receiver = (MyEventReceiver *)device->getEventReceiver();
+	receiver = (EventReceiver *)device->getEventReceiver();
 }
 
 void Level::addTerrainSceneNode()
@@ -110,8 +110,8 @@ void Level::run()
 {	
 	Camera* camera = new Camera(device);
 	camera->setFocusMesh(sydney->getAnimNode());
-//	UserInterface *interface = new UserInterface(device);                                  //раскомментить
-//	interface->loadInterface();                                                             //раскомментить
+	UserInterface *interface = new UserInterface(device);                                  //раскомментить
+	interface->loadInterface();                                                             //раскомментить
 	
 	while(device->run()){
         
