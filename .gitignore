@@ -35,3 +35,6 @@
 # Ninja tmp ignore
 *.ninja_deps
 *.ninja_log
+
+# Ignore Media files
+media/*
