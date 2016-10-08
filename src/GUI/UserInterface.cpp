@@ -43,7 +43,6 @@ void UserInterface::addScrollbar()
 	listbox = env->addListBox(rect<s32>(50, 140, 250, 210));
 	env->addEditBox(L"Editable Text", rect<s32>(350, 80, 550, 100));
 
-	//initialize context??? mb mv to method
 	// Store the appropriate data in a context structure.
 	context = new SAppContext;
 	context->device = device;

@@ -1,5 +1,5 @@
-#ifndef GUIReceiver
-#define GUIReceiver
+#ifndef GUIRECEIVER
+#define GUIRECEIVER
 
 #include <irrlicht/irrlicht.h>
 #include "../typedefs.hpp"
@@ -13,7 +13,6 @@ struct SAppContext
     IGUIListBox    *listbox;
 };
 
-// Define some values that we'll use to identify individual GUI controls.
 enum
 {
     GUI_ID_QUIT_BUTTON = 101,
@@ -23,15 +22,6 @@ enum
 };
 
 extern void setSkinTransparency(s32 alpha, irr::gui::IGUISkin * skin);
-//void setSkinTransparency(s32 alpha, irr::gui::IGUISkin * skin)
-// {
-// 	for (s32 i = 0; i < irr::gui::EGDC_COUNT; ++i)
-// 	{
-// 		video::SColor col = skin->getColor((EGUI_DEFAULT_COLOR)i);
-// 		col.setAlpha(alpha);
-// 		skin->setColor((EGUI_DEFAULT_COLOR)i, col);
-// 	}
-// }
 
 class UIEventReceiver : public IEventReceiver
 {
@@ -118,4 +108,4 @@ public:
 };
 
 
-#endif //GUIReceiver
+#endif //GUIRECEIVER
