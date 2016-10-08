@@ -2,7 +2,7 @@
 #define UI
 
 #include <irrlicht/irrlicht.h>
-#include "typedefs.hpp"
+#include "../typedefs.hpp"
 #include "UIEventReceiver.hpp"
 
 using namespace tl;

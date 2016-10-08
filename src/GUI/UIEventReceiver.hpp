@@ -2,7 +2,7 @@
 #define GUIReceiver
 
 #include <irrlicht/irrlicht.h>
-#include "typedefs.hpp"
+#include "../typedefs.hpp"
 
 using namespace tl;
 
