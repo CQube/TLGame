@@ -99,9 +99,7 @@ void Level::loadLevel()
 	addMainHero();
 	addCharacters();
 	camera = new Camera(device);
-	camera->setFocusMesh(sydney->getAnimNode());
-	UserInterface *interface = new UserInterface(device);                     
-        
+	camera->setFocusMesh(sydney->getAnimNode());        
 }
 
 irr::scene::ITriangleSelector *Level::getTrSelector()
@@ -112,11 +110,7 @@ irr::scene::ITriangleSelector *Level::getTrSelector()
 void Level::run()
 {	 
 	sydney->Move(receiver);
-	if(receiver->IsKeyDown(irr::KEY_KEY_Q)){
-//		interface->loadInterface();  
-//		interface->menu();                                                
-	}
-		
+        		
 	camera->update();
 		
 	driver->beginScene(true, true, video::SColor(255,113,113,133));

@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-Game::Game() : state(MENU)
+Game::Game() : state(INGAME)
 {
 	device = createDevice(EDT_OPENGL, core::dimension2d<u32>(640, 480),
 			      16, false, false, false, &receiver);
@@ -9,37 +9,44 @@ Game::Game() : state(MENU)
 	state = INGAME;
 	driver = device->getVideoDriver();
 	smgr = device->getSceneManager();	
+	interface = new UserInterface(device);                     
+	level = new Level(device);
+
 }
 
-void Game::cursorVisible(bool visible)
+void Game::showCursor(bool visible)
 {
 	device->getCursorControl()->setVisible(visible);
 }
 	
 void Game::menu()
 {
-
-	
+        showCursor(true);
+       	interface->menu();                                                	
 }
 
 void Game::game()
 {
-	cursorVisible(false);
+        showCursor(false);
 	level->run();
+	if (receiver.IsKeyDown(KEY_ESCAPE))
+	{
+		state = MENU;
+		showCursor(true);
+	}
+
 }
 
 void Game::loop()
 {
-        
-	
-	level = new Level(device);
 	level->loadLevel();
+	interface->loadInterface();  
+	
 	while(device->run())
 	{
 		switch (state) {
 		case MENU: {
-			cursorVisible(true);
-			menu();
+        		menu();
 			break;
 		}
 		case INGAME: {

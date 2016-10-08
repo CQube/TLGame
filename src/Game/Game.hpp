@@ -7,7 +7,7 @@
 #include "Character.hpp"
 #include "Level.hpp"
 #include "MainHero.hpp"
-
+#include "../GUI/UserInterface.hpp"
 
 enum State{
 	MENU = 0,
@@ -23,12 +23,13 @@ private:
 	IVideoDriver* driver;
 	ISceneManager* smgr;
 	Level *level;
+	UserInterface *interface;
 	EventReceiver receiver;
 	State state;
 
 	void game();
 	void menu();
-	void cursorVisible(bool visible);
+	void showCursor(bool visible);
 public:
 	Game();
 	void loop();

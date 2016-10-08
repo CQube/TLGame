@@ -63,6 +63,7 @@ void UserInterface::menu() //in loop
 	driver->beginScene(true, true, SColor(0,200,200,200));
 	env->drawAll();
         driver->endScene();
+	
 }
 
 void UserInterface::loadInterface()
