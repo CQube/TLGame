@@ -5,6 +5,7 @@
 #include "MainHero.hpp"
 #include "../EventReceiver.h"
 #include "../GUI/UserInterface.hpp"        //раскомментить
+#include "Camera.hpp"
 
 class Level
 {
@@ -21,8 +22,8 @@ private:
 	irr::scene::ISceneNodeAnimator        *anim;
 	irr::scene::ITerrainSceneNode         *terrain;
 	MainHero                              *sydney;
-	EventReceiver                       *receiver;
-	
+	EventReceiver                         *receiver;
+	Camera                                *camera;
 public:
 	Level(irr::IrrlichtDevice *_device);
 	void addTerrainSceneNode();

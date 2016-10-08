@@ -11,5 +11,6 @@ build Game/Level.o: cppl Game/Level.cpp
 build Game/MainHero.o: cppl Game/MainHero.cpp
 build GUI/UserInterface.o: cppl GUI/UserInterface.cpp
 build GUI/UIEventReceiver.o: cppl GUI/UIEventReceiver.cpp
-build run.out: cpp main.cpp Game/Camera.o Game/Character.o Game/Level.o Game/MainHero.o GUI/UserInterface.o GUI/UIEventReceiver.o
+build Game/Game.o: cppl Game/Game.cpp
+build run.out: cpp main.cpp Game/Camera.o Game/Character.o Game/Level.o Game/MainHero.o GUI/UserInterface.o GUI/UIEventReceiver.o Game/Game.o
 

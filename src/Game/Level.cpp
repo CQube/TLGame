@@ -1,5 +1,4 @@
 #include "Level.hpp"
-#include "Camera.hpp"
 
 Level::Level(irr::IrrlichtDevice *_device)
 {
@@ -99,6 +98,10 @@ void Level::loadLevel()
 	driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
 	addMainHero();
 	addCharacters();
+	camera = new Camera(device);
+	camera->setFocusMesh(sydney->getAnimNode());
+	UserInterface *interface = new UserInterface(device);                     
+        
 }
 
 irr::scene::ITriangleSelector *Level::getTrSelector()
@@ -107,27 +110,18 @@ irr::scene::ITriangleSelector *Level::getTrSelector()
 }
 
 void Level::run()
-{	
-	Camera* camera = new Camera(device);
-	camera->setFocusMesh(sydney->getAnimNode());
-	UserInterface *interface = new UserInterface(device);                                  //раскомментить
-        
-	while(device->run()){
-        
-		sydney->Move(receiver);
-		if(receiver->IsKeyDown(irr::KEY_KEY_Q)){
-			interface->loadInterface();  
-			interface->menu();                                                //раскомментить
-                        //vector3df pos_node = sydney->getAnimNode()->getPosition();
-			//std::cout << pos_node.X<<" " << pos_node.Y<<" " << pos_node.Z << std::endl;
-		}
-		
-		camera->update();
-		
-		driver->beginScene(true, true, video::SColor(255,113,113,133));
-		smgr->drawAll();
-	       	device->getGUIEnvironment()->drawAll();
-
-		driver->endScene();
+{	 
+	sydney->Move(receiver);
+	if(receiver->IsKeyDown(irr::KEY_KEY_Q)){
+//		interface->loadInterface();  
+//		interface->menu();                                                
 	}
+		
+	camera->update();
+		
+	driver->beginScene(true, true, video::SColor(255,113,113,133));
+	smgr->drawAll();
+	device->getGUIEnvironment()->drawAll();
+
+	driver->endScene();     
 }

@@ -1,36 +1,33 @@
-#include <irrlicht/irrlicht.h>
-#include <irrlicht/driverChoice.h>
-#include "EventReceiver.h"
-#include "Game/Camera.hpp"
-#include "Game/Character.hpp"
-#include "typedefs.hpp"
-#include "Game/Level.hpp"
-#include "Game/MainHero.hpp"
-
-using namespace tl;
+// #include <irrlicht/irrlicht.h>
+// #include <irrlicht/driverChoice.h>
+// #include "EventReceiver.h"
+// #include "Game/Camera.hpp"
+// #include "Game/Character.hpp"
+// #include "typedefs.hpp"
+// #include "Game/Level.hpp"
+// #include "Game/MainHero.hpp"
+#include "Game/Game.hpp"
 
 int main()
 {	
-	EventReceiver receiver;
 	
-	IrrlichtDevice* device =
-		createDevice(EDT_OPENGL, core::dimension2d<u32>(640, 480),
-			     16, false, false, false, &receiver);
+	//if (device == 0)
+	//	return 1;
 	
-	if (device == 0)
-		return 1;
-	
-	video::IVideoDriver* driver = device->getVideoDriver();
-	scene::ISceneManager* smgr = device->getSceneManager();
+	//video::IVideoDriver* driver = device->getVideoDriver();
+	//scene::ISceneManager* smgr = device->getSceneManager();
 
-	Level *level = new Level(device);
-	level->loadLevel();
+	//Level *level = new Level(device);
+	//level->loadLevel();
 	
-        device->getCursorControl()->setVisible(false);
+        //device->getCursorControl()->setVisible(false);
 	
-	level->run();
+	//level->run();
 	
-	device->drop();
+	//device->drop();
+
+	Game *game = new Game();
+	game->loop();
 	
 	return 0;
 }
