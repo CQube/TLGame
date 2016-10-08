@@ -11,7 +11,7 @@ using namespace tl;
 
 int main()
 {	
-	MyEventReceiver receiver;
+	EventReceiver receiver;
 	
 	IrrlichtDevice* device =
 		createDevice(EDT_OPENGL, core::dimension2d<u32>(640, 480),

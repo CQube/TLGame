@@ -19,7 +19,7 @@ private:
 	SAppContext             *context;
 	IGUIScrollBar         *scrollbar;
 	IGUIListBox             *listbox; 
-//	UIEventReceiver        *receiver;
+	UIEventReceiver        *receiver;
 public:
 	UserInterface(IrrlichtDevice * _device);
 	void addScrollbar();

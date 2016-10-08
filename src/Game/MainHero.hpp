@@ -16,7 +16,7 @@ public:
 	void addTrSelector(ITriangleSelector *_selector);
 	void oMove (AnimNode *obj, f32 x, f32 y, f32 z);
 	void Turn (AnimNode *obj, f32 x, f32 y, f32 z);
-	void Move(MyEventReceiver *receiver);
+	void Move(EventReceiver *receiver);
 	
 
 };

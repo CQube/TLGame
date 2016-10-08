@@ -4,21 +4,14 @@ UserInterface::UserInterface(IrrlichtDevice * _device)
 {
 	device = _device;
 	driver = device->getVideoDriver();
-	device->getGUIEnvironment();
-	skin = env->getSkin();
-
-	//initialize context??? mb mv to method
-	// Store the appropriate data in a context structure.
-	context->device = device;
-	context->counter = 0;
-	context->listbox = listbox;
-
+	env = device->getGUIEnvironment();
 }
 
 
 void UserInterface::setFont()
 {
-	IGUIFont* font = env->getFont("../media/fonthaettenschweiler.bmp"); //TODO change path to define
+	skin = env->getSkin();
+	font = env->getFont("../media/fonthaettenschweiler.bmp"); //TODO change path to define
 	if (font)
 		skin->setFont(font);
 
@@ -50,9 +43,16 @@ void UserInterface::addScrollbar()
 	listbox = env->addListBox(rect<s32>(50, 140, 250, 210));
 	env->addEditBox(L"Editable Text", rect<s32>(350, 80, 550, 100));
 
+	//initialize context??? mb mv to method
+	// Store the appropriate data in a context structure.
+	context = new SAppContext;
+	context->device = device;
+	context->counter = 0;
+	context->listbox = listbox;
+	
 	// Store the appropriate data in a context structure.
 	// Then create the event receiver, giving it that context structure.
-		UIEventReceiver *receiver = new UIEventReceiver(context);
+	receiver = new UIEventReceiver(context);
 
 	// And tell the device to use our custom event receiver.
 	device->setEventReceiver(receiver);	

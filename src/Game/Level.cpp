@@ -15,7 +15,7 @@ Level::Level(irr::IrrlichtDevice *_device)
 	meta = NULL;
 	anim = NULL;
 	terrain = NULL;
-	receiver = (MyEventReceiver *)device->getEventReceiver();
+	receiver = (EventReceiver *)device->getEventReceiver();
 }
 
 void Level::addTerrainSceneNode()
@@ -110,14 +110,14 @@ void Level::run()
 {	
 	Camera* camera = new Camera(device);
 	camera->setFocusMesh(sydney->getAnimNode());
-//	UserInterface *interface = new UserInterface(device);                                  //раскомментить
-//	interface->loadInterface();                                                             //раскомментить
-	
+	UserInterface *interface = new UserInterface(device);                                  //раскомментить
+        
 	while(device->run()){
         
 		sydney->Move(receiver);
 		if(receiver->IsKeyDown(irr::KEY_KEY_Q)){
-			//	interface->menu();                                                //раскомментить
+			interface->loadInterface();  
+			interface->menu();                                                //раскомментить
                         //vector3df pos_node = sydney->getAnimNode()->getPosition();
 			//std::cout << pos_node.X<<" " << pos_node.Y<<" " << pos_node.Z << std::endl;
 		}

@@ -2,10 +2,8 @@
 #define TYPEDEFS_HPP
 
 namespace tl
-{
-	
-	
-	using namespace irr;
+{	
+       	using namespace irr;
 	using namespace core;
 	using namespace scene;
 	using namespace gui;
