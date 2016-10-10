@@ -1,0 +1,3 @@
+/home/nik/Sources/TLGame/build/CMakeFiles/edit_cache.dir
+/home/nik/Sources/TLGame/build/CMakeFiles/rebuild_cache.dir
+/home/nik/Sources/TLGame/build/CMakeFiles/run.dir
