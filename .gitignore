@@ -35,3 +35,6 @@
 # Ninja tmp ignore
 *.ninja_deps
 *.ninja_log
+
+# Make folder
+/build/
