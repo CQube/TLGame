@@ -5,8 +5,9 @@ project( TLGame )
 file( GLOB SOURCES "./src/Game/*.cpp"
 	  	  "./src/headers/*.hpp"
 	  	  "./src/headers/*.h" )
-
-set( CMAKE_CXX_FLAGS "-g -std=c++0x -lIrrlicht -lGL -lGLU -lXrandr -lXext -lX11" )
+		  
+set( CMAKE_CXX_FLAGS "-std=c++0x" )
 
 add_executable( run ${SOURCES} )
 
+TARGET_LINK_LIBRARIES(run "/usr/lib/libIrrlicht.so.1.8.4")
