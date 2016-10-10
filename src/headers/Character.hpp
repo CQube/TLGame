@@ -2,7 +2,7 @@
 #define CHARACTER_HPP
 
 #include <irrlicht/irrlicht.h>
-#include "../typedefs.hpp"
+#include "typedefs.hpp"
 
 class Character 
 {

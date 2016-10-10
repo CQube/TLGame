@@ -1,4 +1,4 @@
-#include "Character.hpp"
+#include "../headers/Character.hpp"
 #include <stdlib.h>
 
 Character::Character(irr::IrrlichtDevice *_device, const tl::path &mesh_path, const tl::path &texture_path, tl::vector3df position)

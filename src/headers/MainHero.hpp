@@ -2,9 +2,9 @@
 #define MAIN_HERO_HPP
 
 #include <irrlicht/irrlicht.h>
-#include "../typedefs.hpp"
+#include "typedefs.hpp"
 #include "Character.hpp"
-#include "../EventReceiver.h"
+#include "EventReceiver.h"
 
 using namespace tl;
 

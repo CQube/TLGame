@@ -1,5 +1,5 @@
-#include "Level.hpp"
-#include "Camera.hpp"
+#include "../headers/Level.hpp"
+#include "../headers/Camera.hpp"
 
 Level::Level(irr::IrrlichtDevice *_device)
 {

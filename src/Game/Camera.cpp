@@ -1,4 +1,4 @@
-#include "Camera.hpp"
+#include "../headers/Camera.hpp"
 
 Camera::Camera(irr::IrrlichtDevice *_device)
 {

@@ -1,11 +1,11 @@
 #include <irrlicht/irrlicht.h>
 #include <irrlicht/driverChoice.h>
-#include "EventReceiver.h"
-#include "Game/Camera.hpp"
-#include "Game/Character.hpp"
-#include "typedefs.hpp"
-#include "Game/Level.hpp"
-#include "Game/MainHero.hpp"
+#include "../headers/EventReceiver.h"
+#include "../headers/Camera.hpp"
+#include "../headers/Character.hpp"
+#include "../headers/typedefs.hpp"
+#include "../headers/Level.hpp"
+#include "../headers/MainHero.hpp"
 
 using namespace tl;
 

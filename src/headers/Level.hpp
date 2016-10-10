@@ -1,9 +1,9 @@
 #ifndef LEVEL
 #define LEVEL
 #include <irrlicht/irrlicht.h>
-#include "../typedefs.hpp"
+#include "typedefs.hpp"
 #include "MainHero.hpp"
-#include "../EventReceiver.h"
+#include "EventReceiver.h"
 
 class Level
 {
