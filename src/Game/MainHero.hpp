@@ -7,7 +7,7 @@
 #include "../InputReceiver.hpp"
 
 using namespace tl;
-
+class InputReceiver;
 class MainHero: public Character
 {
 public:
