@@ -52,23 +52,40 @@ void Level::addLightning() //надо указательно на smgr
 
 void Level::addSkyBox()
 {
-	skybox = smgr->addSkyBoxSceneNode(
-		driver->getTexture("../media/irrlicht2_up.jpg"),
-		driver->getTexture("../media/irrlicht2_dn.jpg"),
-		driver->getTexture("../media/irrlicht2_lf.jpg"),
-		driver->getTexture("../media/irrlicht2_rt.jpg"),
-		driver->getTexture("../media/irrlicht2_ft.jpg"),
-		driver->getTexture("../media/irrlicht2_bk.jpg"));
+	skybox = smgr->addSkyBoxSceneNode( Up, Down, Left, Right, Forward, Back );
+/*	skybox = smgr->addSkyBoxSceneNode( driver->getTexture( media_folder + "irrlicht2_up.jpg"),
+					   driver->getTexture( media_folder + "irrlicht2_dn.jpg" ),
+					   driver->getTexture( media_folder + "irrlicht2_lf.jpg" ),
+					   driver->getTexture( media_folder + "irrlicht2_rt.jpg" ),
+					   driver->getTexture( media_folder + "irrlicht2_ft.jpg" ),
+					   driver->getTexture( media_folder + "irrlicht2_bk.jpg" ));
+*/}
+//////////////////////////
+////  LOAD
+//////////////////////////
+void Level::loadSkyBoxTextures()
+{
+	Up      = driver->getTexture( media_folder + "irrlicht2_up.jpg" );
+	Down    = driver->getTexture( media_folder + "irrlicht2_dn.jpg" );
+	Left    = driver->getTexture( media_folder + "irrlicht2_lf.jpg" );
+	Right   = driver->getTexture( media_folder + "irrlicht2_rt.jpg" );
+	Forward = driver->getTexture( media_folder + "irrlicht2_ft.jpg" );
+	Back    = driver->getTexture( media_folder + "irrlicht2_bk.jpg" );	
 }
 
+void Level::loadSkyDomeTextures()
+{
+	skydome_texture = driver->getTexture( media_folder + "skydome.jpg");
+}
+//////////////////////////end loads
 void Level::addSkyDome()
 {
-	skydome = smgr->addSkyDomeSceneNode(driver -> getTexture("../media/skydome.jpg"), 16, 8, 0.95f, 2.0f);
+	skydome = smgr->addSkyDomeSceneNode( skydome_texture, 16, 8, 0.95f, 2.0f);
 }
 
 void Level::addMainHero()
 {
-	sydney = new MainHero(device, "../media/sydney.md2", "../media/sydney.bmp", vector3df(180, 200, 0));
+	sydney = new MainHero(device, media_folder +"sydney.md2", media_folder +"sydney.bmp", vector3df(180, 200, 0));
 	AnimNode *node_sydney = sydney->getAnimNode();
 	node_sydney->setScale(core::vector3df(1.5f));
 	node_sydney->setMD2Animation(scene::EMAT_STAND);
@@ -79,10 +96,10 @@ void Level::addMainHero()
 
 void Level::addCharacters()
 {
-        Character *ninja = new Character(device, "../media/ninja.b3d", vector3df(3071, 400, 1970), selector);
+        Character *ninja = new Character(device, media_folder + "ninja.b3d", vector3df(3071, 400, 1970), selector);
         AnimNode *node_ninja = ninja->getAnimNode();
 	
-	Character *dwarf = new Character(device, "../media/dwarf.x", vector3df(2760, 480, 3705), selector);
+	Character *dwarf = new Character(device, media_folder + "dwarf.x", vector3df(2760, 480, 3705), selector);
         AnimNode *node_dwarf = dwarf->getAnimNode();
 	node_dwarf->setRotation(vector3df(0, 20, 0));
 }
@@ -93,8 +110,11 @@ void Level::loadLevel()
 					   irr::core::vector3df(0.0f,0.0f,0.0f), -1);
 	addTerrainSceneNode();
 	addLightning();
-	addSkyBox();
-	addSkyDome();
+//load
+	loadSkyBoxTextures();
+	loadSkyDomeTextures();
+//	addSkyBox();
+//	addSkyDome();
 	driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
 	addMainHero();
 	addCharacters();
@@ -112,10 +132,21 @@ void Level::run()
 	sydney->Move(receiver);
         		
 	camera->update();
-		
+// add'ы
+	addSkyBox();
+	addSkyDome();
+//	
 	driver->beginScene(true, true, video::SColor(255,113,113,133));
 	smgr->drawAll();
 	device->getGUIEnvironment()->drawAll();
-
-	driver->endScene();     
+	
+	driver->endScene();
+	remove();
 }
+
+void Level::remove()
+{
+	skybox->remove();
+	skydome->remove();
+}
+

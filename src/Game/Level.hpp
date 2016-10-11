@@ -7,6 +7,7 @@
 #include "../GUI/UserInterface.hpp"        //раскомментить
 #include "Camera.hpp"
 
+const path media_folder =                 "../media/";
 class Level
 {
 private:
@@ -24,6 +25,14 @@ private:
 	MainHero                              *sydney;
 	EventReceiver                         *receiver;
 	Camera                                *camera;
+	ITexture *Up;
+	ITexture *Down;
+	ITexture *Left;
+	ITexture *Right;
+	ITexture *Forward;
+	ITexture *Back;
+	ITexture *skydome_texture;
+	
 public:
 	Level(irr::IrrlichtDevice *_device);
 	void addTerrainSceneNode();
@@ -35,7 +44,12 @@ public:
 	void loadLevel();
 	irr::scene::ITriangleSelector *getTrSelector();
 
+//loads
+	void loadSkyBoxTextures();
+	void loadSkyDomeTextures();
+	
 	void run();
+	void remove();
 };
 
 #endif //LEVEL

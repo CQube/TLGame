@@ -6,8 +6,7 @@ Game::Game() : state(INGAME)
 			      16, false, false, false, &receiver);
 	if (device == 0)
 		return;
-	state = INGAME;
-	driver = device->getVideoDriver();
+       	driver = device->getVideoDriver();
 	smgr = device->getSceneManager();	
 	interface = new UserInterface(device);                     
 	level = new Level(device);
@@ -40,7 +39,7 @@ void Game::game()
 void Game::loop()
 {
 	level->loadLevel();
-	interface->loadInterface();  
+//	interface->loadInterface();  
 	
 	while(device->run())
 	{
