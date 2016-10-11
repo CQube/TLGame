@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/nik/Sources/TLGame
+CMAKE_SOURCE_DIR = /home/dimas/Git_projects/TLGame
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/nik/Sources/TLGame/build
+CMAKE_BINARY_DIR = /home/dimas/Git_projects/TLGame/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/run.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/run.dir/flags.make
 
 CMakeFiles/run.dir/src/Game/Camera.cpp.o: CMakeFiles/run.dir/flags.make
 CMakeFiles/run.dir/src/Game/Camera.cpp.o: ../src/Game/Camera.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nik/Sources/TLGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/run.dir/src/Game/Camera.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/src/Game/Camera.cpp.o -c /home/nik/Sources/TLGame/src/Game/Camera.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dimas/Git_projects/TLGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/run.dir/src/Game/Camera.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/src/Game/Camera.cpp.o -c /home/dimas/Git_projects/TLGame/src/Game/Camera.cpp
 
 CMakeFiles/run.dir/src/Game/Camera.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/src/Game/Camera.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nik/Sources/TLGame/src/Game/Camera.cpp > CMakeFiles/run.dir/src/Game/Camera.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dimas/Git_projects/TLGame/src/Game/Camera.cpp > CMakeFiles/run.dir/src/Game/Camera.cpp.i
 
 CMakeFiles/run.dir/src/Game/Camera.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/src/Game/Camera.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nik/Sources/TLGame/src/Game/Camera.cpp -o CMakeFiles/run.dir/src/Game/Camera.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dimas/Git_projects/TLGame/src/Game/Camera.cpp -o CMakeFiles/run.dir/src/Game/Camera.cpp.s
 
 CMakeFiles/run.dir/src/Game/Camera.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/run.dir/src/Game/Camera.cpp.o.provides.build: CMakeFiles/run.dir/src/
 
 CMakeFiles/run.dir/src/Game/Character.cpp.o: CMakeFiles/run.dir/flags.make
 CMakeFiles/run.dir/src/Game/Character.cpp.o: ../src/Game/Character.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nik/Sources/TLGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/run.dir/src/Game/Character.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/src/Game/Character.cpp.o -c /home/nik/Sources/TLGame/src/Game/Character.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dimas/Git_projects/TLGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/run.dir/src/Game/Character.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/src/Game/Character.cpp.o -c /home/dimas/Git_projects/TLGame/src/Game/Character.cpp
 
 CMakeFiles/run.dir/src/Game/Character.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/src/Game/Character.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nik/Sources/TLGame/src/Game/Character.cpp > CMakeFiles/run.dir/src/Game/Character.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dimas/Git_projects/TLGame/src/Game/Character.cpp > CMakeFiles/run.dir/src/Game/Character.cpp.i
 
 CMakeFiles/run.dir/src/Game/Character.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/src/Game/Character.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nik/Sources/TLGame/src/Game/Character.cpp -o CMakeFiles/run.dir/src/Game/Character.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dimas/Git_projects/TLGame/src/Game/Character.cpp -o CMakeFiles/run.dir/src/Game/Character.cpp.s
 
 CMakeFiles/run.dir/src/Game/Character.cpp.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/run.dir/src/Game/Character.cpp.o.provides.build: CMakeFiles/run.dir/s
 
 CMakeFiles/run.dir/src/Game/Level.cpp.o: CMakeFiles/run.dir/flags.make
 CMakeFiles/run.dir/src/Game/Level.cpp.o: ../src/Game/Level.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nik/Sources/TLGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/run.dir/src/Game/Level.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/src/Game/Level.cpp.o -c /home/nik/Sources/TLGame/src/Game/Level.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dimas/Git_projects/TLGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/run.dir/src/Game/Level.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/src/Game/Level.cpp.o -c /home/dimas/Git_projects/TLGame/src/Game/Level.cpp
 
 CMakeFiles/run.dir/src/Game/Level.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/src/Game/Level.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nik/Sources/TLGame/src/Game/Level.cpp > CMakeFiles/run.dir/src/Game/Level.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dimas/Git_projects/TLGame/src/Game/Level.cpp > CMakeFiles/run.dir/src/Game/Level.cpp.i
 
 CMakeFiles/run.dir/src/Game/Level.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/src/Game/Level.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nik/Sources/TLGame/src/Game/Level.cpp -o CMakeFiles/run.dir/src/Game/Level.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dimas/Git_projects/TLGame/src/Game/Level.cpp -o CMakeFiles/run.dir/src/Game/Level.cpp.s
 
 CMakeFiles/run.dir/src/Game/Level.cpp.o.requires:
 
@@ -131,16 +131,16 @@ CMakeFiles/run.dir/src/Game/Level.cpp.o.provides.build: CMakeFiles/run.dir/src/G
 
 CMakeFiles/run.dir/src/Game/MainHero.cpp.o: CMakeFiles/run.dir/flags.make
 CMakeFiles/run.dir/src/Game/MainHero.cpp.o: ../src/Game/MainHero.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nik/Sources/TLGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/run.dir/src/Game/MainHero.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/src/Game/MainHero.cpp.o -c /home/nik/Sources/TLGame/src/Game/MainHero.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dimas/Git_projects/TLGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/run.dir/src/Game/MainHero.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/src/Game/MainHero.cpp.o -c /home/dimas/Git_projects/TLGame/src/Game/MainHero.cpp
 
 CMakeFiles/run.dir/src/Game/MainHero.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/src/Game/MainHero.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nik/Sources/TLGame/src/Game/MainHero.cpp > CMakeFiles/run.dir/src/Game/MainHero.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dimas/Git_projects/TLGame/src/Game/MainHero.cpp > CMakeFiles/run.dir/src/Game/MainHero.cpp.i
 
 CMakeFiles/run.dir/src/Game/MainHero.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/src/Game/MainHero.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nik/Sources/TLGame/src/Game/MainHero.cpp -o CMakeFiles/run.dir/src/Game/MainHero.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dimas/Git_projects/TLGame/src/Game/MainHero.cpp -o CMakeFiles/run.dir/src/Game/MainHero.cpp.s
 
 CMakeFiles/run.dir/src/Game/MainHero.cpp.o.requires:
 
@@ -155,16 +155,16 @@ CMakeFiles/run.dir/src/Game/MainHero.cpp.o.provides.build: CMakeFiles/run.dir/sr
 
 CMakeFiles/run.dir/src/InputReceiver.cpp.o: CMakeFiles/run.dir/flags.make
 CMakeFiles/run.dir/src/InputReceiver.cpp.o: ../src/InputReceiver.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nik/Sources/TLGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/run.dir/src/InputReceiver.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/src/InputReceiver.cpp.o -c /home/nik/Sources/TLGame/src/InputReceiver.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dimas/Git_projects/TLGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/run.dir/src/InputReceiver.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/src/InputReceiver.cpp.o -c /home/dimas/Git_projects/TLGame/src/InputReceiver.cpp
 
 CMakeFiles/run.dir/src/InputReceiver.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/src/InputReceiver.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nik/Sources/TLGame/src/InputReceiver.cpp > CMakeFiles/run.dir/src/InputReceiver.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dimas/Git_projects/TLGame/src/InputReceiver.cpp > CMakeFiles/run.dir/src/InputReceiver.cpp.i
 
 CMakeFiles/run.dir/src/InputReceiver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/src/InputReceiver.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nik/Sources/TLGame/src/InputReceiver.cpp -o CMakeFiles/run.dir/src/InputReceiver.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dimas/Git_projects/TLGame/src/InputReceiver.cpp -o CMakeFiles/run.dir/src/InputReceiver.cpp.s
 
 CMakeFiles/run.dir/src/InputReceiver.cpp.o.requires:
 
@@ -179,16 +179,16 @@ CMakeFiles/run.dir/src/InputReceiver.cpp.o.provides.build: CMakeFiles/run.dir/sr
 
 CMakeFiles/run.dir/src/main.cpp.o: CMakeFiles/run.dir/flags.make
 CMakeFiles/run.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nik/Sources/TLGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/run.dir/src/main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/src/main.cpp.o -c /home/nik/Sources/TLGame/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dimas/Git_projects/TLGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/run.dir/src/main.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/src/main.cpp.o -c /home/dimas/Git_projects/TLGame/src/main.cpp
 
 CMakeFiles/run.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/src/main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nik/Sources/TLGame/src/main.cpp > CMakeFiles/run.dir/src/main.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/dimas/Git_projects/TLGame/src/main.cpp > CMakeFiles/run.dir/src/main.cpp.i
 
 CMakeFiles/run.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/src/main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nik/Sources/TLGame/src/main.cpp -o CMakeFiles/run.dir/src/main.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/dimas/Git_projects/TLGame/src/main.cpp -o CMakeFiles/run.dir/src/main.cpp.s
 
 CMakeFiles/run.dir/src/main.cpp.o.requires:
 
@@ -222,7 +222,7 @@ run: CMakeFiles/run.dir/src/main.cpp.o
 run: CMakeFiles/run.dir/build.make
 run: /usr/lib/libIrrlicht.so.1.8.4
 run: CMakeFiles/run.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/nik/Sources/TLGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable run"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/dimas/Git_projects/TLGame/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable run"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/run.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -244,6 +244,6 @@ CMakeFiles/run.dir/clean:
 .PHONY : CMakeFiles/run.dir/clean
 
 CMakeFiles/run.dir/depend:
-	cd /home/nik/Sources/TLGame/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/nik/Sources/TLGame /home/nik/Sources/TLGame /home/nik/Sources/TLGame/build /home/nik/Sources/TLGame/build /home/nik/Sources/TLGame/build/CMakeFiles/run.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/dimas/Git_projects/TLGame/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dimas/Git_projects/TLGame /home/dimas/Git_projects/TLGame /home/dimas/Git_projects/TLGame/build /home/dimas/Git_projects/TLGame/build /home/dimas/Git_projects/TLGame/build/CMakeFiles/run.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/run.dir/depend
 
