@@ -11,7 +11,8 @@ namespace tl
 	using namespace io;
 
 	typedef IAnimatedMeshSceneNode AnimNode;
-
+	enum Direction {X = 1, Y, Z};
+	
 	enum
 	{
 		ID_IsNotPickable = 0,                                                

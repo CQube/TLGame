@@ -1,16 +1,15 @@
-#include "../headers/MainHero.hpp"
+#include "MainHero.hpp"
 
-void MainHero::oMove (AnimNode *obj, f32 x, f32 y, f32 z)
+void MainHero::oMove ()
 {
-	vector3df move;
 	matrix4 matrix;
 
 	move = vector3df(x, y, z);
 
-	matrix.setRotationDegrees(obj->getRotation());
-	matrix.transformVect(move);
+	matrix.setRotationDegrees(node->getRotation());
+	matrix.transformVect(Speed);
 
-	obj->setPosition(obj->getPosition() + move);
+	node->setPosition(node->getPosition() + Speed);
 }
 
 void MainHero::Turn (AnimNode *obj, f32 x, f32 y, f32 z)
@@ -18,28 +17,12 @@ void MainHero::Turn (AnimNode *obj, f32 x, f32 y, f32 z)
 	obj->setRotation(obj->getRotation() + vector3df(x, y, z));
 }
 
-void MainHero::Move(MyEventReceiver *receiver)
-{
+void MainHero::Move(InputReceiver *receiver)
+{		
 	core::vector3df nodePosition_sydney = node->getPosition();
 
-	if(receiver->IsKeyDown(irr::KEY_KEY_W)){
-		oMove(node, MOVEMENT_SPEED, 0, 0);
-	}
-	if(receiver->IsKeyDown(irr::KEY_KEY_S)){
-		oMove(node, -1 * MOVEMENT_SPEED, 0, 0);
-	}
-        if(receiver->IsKeyDown(irr::KEY_KEY_D)){
-		//Turn(node_sydney, 0, 5, 0);
-		oMove(node, 0, 0, -1 * MOVEMENT_SPEED / 3 * 2);
-	}
-	if(receiver->IsKeyDown(irr::KEY_KEY_A)){
-		//Turn(node_sydney, 0, 0, 0);
-		oMove(node, 0, 0, MOVEMENT_SPEED / 3 * 2);
-	}
-	if(receiver->IsKeyDown(irr::KEY_KEY_V)){
-		//Turn(node_sydney, 0, 5, 0);
-		oMove(node, 0, 10, 0);
-	}
+	receiver->ProcessInput(this);
+
 }
 
 void MainHero::addTrSelector(tl::ITriangleSelector* selector)
@@ -53,4 +36,30 @@ void MainHero::addTrSelector(tl::ITriangleSelector* selector)
 	selector->drop();
 	node->addAnimator(anim);
 	anim->drop(); 
+}
+
+void MainHero::changeDirection(Direction _direction)
+{
+	direction = _direction;
+}
+
+void MainHero::changeSpeed(f32 _speed)
+{
+	switch(direction){
+	case 1:
+		Speed = (_speed, 0, 0)
+			break;
+	case 2:
+		
+		Speed = (0, _speed, 0)
+			break;
+	case 3:
+		
+		Speed = (0, 0, _speed)
+	}
+}
+
+void MainHero::cahngeAnimationFlag(EMD2_ANIMATION_TYPE anim_type)
+{
+	node_sydney->setMD2Animation(anim_type);
 }

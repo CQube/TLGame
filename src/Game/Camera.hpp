@@ -2,7 +2,7 @@
 #define CAMERA_HPP
 
 #include <irrlicht/irrlicht.h>
-#include "typedefs.hpp"
+#include "../typedefs.hpp"
 
 using namespace tl;
 

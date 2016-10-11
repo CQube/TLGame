@@ -3,10 +3,11 @@ cmake_minimum_required(VERSION 2.8)
 project( TLGame )
 
 file( GLOB SOURCES "./src/Game/*.cpp"
-	  	  "./src/headers/*.hpp"
-	  	  "./src/headers/*.h" )
+		   "./src/Game/*.hpp"
+	  	  "./src/*.hpp"
+	  	  "./src/*.cpp" )
 		  
-set( CMAKE_CXX_FLAGS "-std=c++0x" )
+set( CMAKE_CXX_FLAGS "-std=c++0x -Wall" )
 
 add_executable( run ${SOURCES} )
 

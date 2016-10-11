@@ -1,9 +1,11 @@
-#ifndef LEVEL
-#define LEVEL
+#ifndef LEVEL_HPP
+#define LEVEL_HPP
+
 #include <irrlicht/irrlicht.h>
-#include "typedefs.hpp"
+#include "../typedefs.hpp"
 #include "MainHero.hpp"
-#include "EventReceiver.h"
+#include "../InputReceiver.hpp"
+#include "Camera.hpp"
 
 class Level
 {
@@ -19,8 +21,8 @@ private:
 	irr::scene::IMetaTriangleSelector     *meta;
 	irr::scene::ISceneNodeAnimator        *anim;
 	irr::scene::ITerrainSceneNode         *terrain;
-	MainHero                              *sydney;
-	MyEventReceiver                       *receiver;
+	MainHero                              *mainHero;
+	InputReceiver                         *receiver;
 	
 public:
 	Level(irr::IrrlichtDevice *_device);
@@ -36,4 +38,4 @@ public:
 	void run();
 };
 
-#endif //LEVEL
+#endif //LEVEL_HPP
