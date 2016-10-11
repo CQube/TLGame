@@ -2,9 +2,9 @@
 #define MAIN_HERO_HPP
 
 #include <irrlicht/irrlicht.h>
-#include "typedefs.hpp"
 #include "Character.hpp"
-#include "EventReceiver.h"
+#include "../typedefs.hpp"
+#include "../InputReceiver.hpp"
 
 using namespace tl;
 
@@ -16,7 +16,7 @@ public:
 	void addTrSelector(ITriangleSelector *_selector);
 	void oMove (AnimNode *obj, f32 x, f32 y, f32 z);
 	void Turn (AnimNode *obj, f32 x, f32 y, f32 z);
-	void Move(MyEventReceiver *receiver);
+	void Move(InputReceiver *receiver);
 	
 
 };

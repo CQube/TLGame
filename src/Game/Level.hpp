@@ -1,9 +1,9 @@
 #ifndef LEVEL
 #define LEVEL
 #include <irrlicht/irrlicht.h>
-#include "typedefs.hpp"
 #include "MainHero.hpp"
-#include "EventReceiver.h"
+#include "../typedefs.hpp"
+#include "../InputReceiver.hpp"
 
 class Level
 {
@@ -20,7 +20,7 @@ private:
 	irr::scene::ISceneNodeAnimator        *anim;
 	irr::scene::ITerrainSceneNode         *terrain;
 	MainHero                              *sydney;
-	MyEventReceiver                       *receiver;
+	InputReceiver                         *receiver;
 	
 public:
 	Level(irr::IrrlichtDevice *_device);

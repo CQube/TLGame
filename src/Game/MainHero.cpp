@@ -1,4 +1,4 @@
-#include "../headers/MainHero.hpp"
+#include "MainHero.hpp"
 
 void MainHero::oMove (AnimNode *obj, f32 x, f32 y, f32 z)
 {
@@ -18,7 +18,7 @@ void MainHero::Turn (AnimNode *obj, f32 x, f32 y, f32 z)
 	obj->setRotation(obj->getRotation() + vector3df(x, y, z));
 }
 
-void MainHero::Move(MyEventReceiver *receiver)
+void MainHero::Move(InputReceiver *receiver)
 {
 	core::vector3df nodePosition_sydney = node->getPosition();
 
