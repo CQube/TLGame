@@ -1,3 +1,0 @@
-/home/dimas/Git_projects/TLGame/build/CMakeFiles/edit_cache.dir
-/home/dimas/Git_projects/TLGame/build/CMakeFiles/rebuild_cache.dir
-/home/dimas/Git_projects/TLGame/build/CMakeFiles/run.dir

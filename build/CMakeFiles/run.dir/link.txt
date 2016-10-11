@@ -1,1 +1,0 @@
-/usr/bin/c++   -std=c++0x   CMakeFiles/run.dir/src/Game/Camera.cpp.o CMakeFiles/run.dir/src/Game/Character.cpp.o CMakeFiles/run.dir/src/Game/Level.cpp.o CMakeFiles/run.dir/src/Game/MainHero.cpp.o CMakeFiles/run.dir/src/InputReceiver.cpp.o CMakeFiles/run.dir/src/main.cpp.o  -o run -rdynamic /usr/lib/libIrrlicht.so.1.8.4 
