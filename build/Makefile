@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/nik/Sources/TLGame
+CMAKE_SOURCE_DIR = /home/dimas/Git_projects/TLGame
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/nik/Sources/TLGame/build
+CMAKE_BINARY_DIR = /home/dimas/Git_projects/TLGame/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nik/Sources/TLGame/build/CMakeFiles /home/nik/Sources/TLGame/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dimas/Git_projects/TLGame/build/CMakeFiles /home/dimas/Git_projects/TLGame/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nik/Sources/TLGame/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dimas/Git_projects/TLGame/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -231,32 +231,59 @@ src/Game/MainHero.cpp.s:
 	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/src/Game/MainHero.cpp.s
 .PHONY : src/Game/MainHero.cpp.s
 
-src/Game/main.o: src/Game/main.cpp.o
+src/InputReceiver.o: src/InputReceiver.cpp.o
 
-.PHONY : src/Game/main.o
+.PHONY : src/InputReceiver.o
 
 # target to build an object file
-src/Game/main.cpp.o:
-	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/src/Game/main.cpp.o
-.PHONY : src/Game/main.cpp.o
+src/InputReceiver.cpp.o:
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/src/InputReceiver.cpp.o
+.PHONY : src/InputReceiver.cpp.o
 
-src/Game/main.i: src/Game/main.cpp.i
+src/InputReceiver.i: src/InputReceiver.cpp.i
 
-.PHONY : src/Game/main.i
+.PHONY : src/InputReceiver.i
 
 # target to preprocess a source file
-src/Game/main.cpp.i:
-	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/src/Game/main.cpp.i
-.PHONY : src/Game/main.cpp.i
+src/InputReceiver.cpp.i:
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/src/InputReceiver.cpp.i
+.PHONY : src/InputReceiver.cpp.i
 
-src/Game/main.s: src/Game/main.cpp.s
+src/InputReceiver.s: src/InputReceiver.cpp.s
 
-.PHONY : src/Game/main.s
+.PHONY : src/InputReceiver.s
 
 # target to generate assembly for a file
-src/Game/main.cpp.s:
-	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/src/Game/main.cpp.s
-.PHONY : src/Game/main.cpp.s
+src/InputReceiver.cpp.s:
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/src/InputReceiver.cpp.s
+.PHONY : src/InputReceiver.cpp.s
+
+src/main.o: src/main.cpp.o
+
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 # Help Target
 help:
@@ -279,9 +306,12 @@ help:
 	@echo "... src/Game/MainHero.o"
 	@echo "... src/Game/MainHero.i"
 	@echo "... src/Game/MainHero.s"
-	@echo "... src/Game/main.o"
-	@echo "... src/Game/main.i"
-	@echo "... src/Game/main.s"
+	@echo "... src/InputReceiver.o"
+	@echo "... src/InputReceiver.i"
+	@echo "... src/InputReceiver.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 

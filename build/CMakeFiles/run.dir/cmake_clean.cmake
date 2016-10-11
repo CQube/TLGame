@@ -3,7 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/run.dir/src/Game/Character.cpp.o"
   "CMakeFiles/run.dir/src/Game/Level.cpp.o"
   "CMakeFiles/run.dir/src/Game/MainHero.cpp.o"
-  "CMakeFiles/run.dir/src/Game/main.cpp.o"
+  "CMakeFiles/run.dir/src/InputReceiver.cpp.o"
+  "CMakeFiles/run.dir/src/main.cpp.o"
   "run.pdb"
   "run"
 )

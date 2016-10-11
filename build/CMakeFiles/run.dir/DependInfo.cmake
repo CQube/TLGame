@@ -4,11 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/nik/Sources/TLGame/src/Game/Camera.cpp" "/home/nik/Sources/TLGame/build/CMakeFiles/run.dir/src/Game/Camera.cpp.o"
-  "/home/nik/Sources/TLGame/src/Game/Character.cpp" "/home/nik/Sources/TLGame/build/CMakeFiles/run.dir/src/Game/Character.cpp.o"
-  "/home/nik/Sources/TLGame/src/Game/Level.cpp" "/home/nik/Sources/TLGame/build/CMakeFiles/run.dir/src/Game/Level.cpp.o"
-  "/home/nik/Sources/TLGame/src/Game/MainHero.cpp" "/home/nik/Sources/TLGame/build/CMakeFiles/run.dir/src/Game/MainHero.cpp.o"
-  "/home/nik/Sources/TLGame/src/Game/main.cpp" "/home/nik/Sources/TLGame/build/CMakeFiles/run.dir/src/Game/main.cpp.o"
+  "/home/dimas/Git_projects/TLGame/src/Game/Camera.cpp" "/home/dimas/Git_projects/TLGame/build/CMakeFiles/run.dir/src/Game/Camera.cpp.o"
+  "/home/dimas/Git_projects/TLGame/src/Game/Character.cpp" "/home/dimas/Git_projects/TLGame/build/CMakeFiles/run.dir/src/Game/Character.cpp.o"
+  "/home/dimas/Git_projects/TLGame/src/Game/Level.cpp" "/home/dimas/Git_projects/TLGame/build/CMakeFiles/run.dir/src/Game/Level.cpp.o"
+  "/home/dimas/Git_projects/TLGame/src/Game/MainHero.cpp" "/home/dimas/Git_projects/TLGame/build/CMakeFiles/run.dir/src/Game/MainHero.cpp.o"
+  "/home/dimas/Git_projects/TLGame/src/InputReceiver.cpp" "/home/dimas/Git_projects/TLGame/build/CMakeFiles/run.dir/src/InputReceiver.cpp.o"
+  "/home/dimas/Git_projects/TLGame/src/main.cpp" "/home/dimas/Git_projects/TLGame/build/CMakeFiles/run.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
