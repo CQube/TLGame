@@ -20,7 +20,7 @@ Level::Level(irr::IrrlichtDevice *_device)
 void Level::addTerrainSceneNode()
 {
 	terrain = smgr->addTerrainSceneNode(
-		"../media/terrain-heightmap.bmp",
+		media_folder + "terrain-heightmap.bmp",
 		0,                    //родитель
 		-1,                   //ID
 		irr::core::vector3df(0, 0, 0),   //позиция
@@ -30,8 +30,8 @@ void Level::addTerrainSceneNode()
 		5,                    //максимум LOD
 		irr::scene::ETPS_17,              //размер патча
 		4);                   //коэфф. размытия
-	terrain->setMaterialTexture(0 , driver->getTexture("../media/terrain-texture.jpg"));
-	terrain->setMaterialTexture(1 , driver->getTexture("../media/detailmap3.jpg"));
+	terrain->setMaterialTexture(0 , driver->getTexture(media_folder + "terrain-texture.jpg"));
+	terrain->setMaterialTexture(1 , driver->getTexture(media_folder + "detailmap3.jpg"));
 	terrain->setMaterialType(irr::video::EMT_DETAIL_MAP);
 	terrain->scaleTexture(10.0f, 20.0f);
 
@@ -53,16 +53,18 @@ void Level::addLightning() //надо указательно на smgr
 void Level::addSkyBox()
 {
 	skybox = smgr->addSkyBoxSceneNode( Up, Down, Left, Right, Forward, Back );
-/*	skybox = smgr->addSkyBoxSceneNode( driver->getTexture( media_folder + "irrlicht2_up.jpg"),
-					   driver->getTexture( media_folder + "irrlicht2_dn.jpg" ),
-					   driver->getTexture( media_folder + "irrlicht2_lf.jpg" ),
-					   driver->getTexture( media_folder + "irrlicht2_rt.jpg" ),
-					   driver->getTexture( media_folder + "irrlicht2_ft.jpg" ),
-					   driver->getTexture( media_folder + "irrlicht2_bk.jpg" ));
-*/}
+}
+
 //////////////////////////
 ////  LOAD
 //////////////////////////
+/*void Level::loadTerrainTextures()
+{
+	terrain_texture1 = driver->getTexture(media_folder + "terrain-texture.jpg");
+	terrain_texture2 = driver->getTexture(media_folder + "detailmap3.jpg");
+}
+*/
+
 void Level::loadSkyBoxTextures()
 {
 	Up      = driver->getTexture( media_folder + "irrlicht2_up.jpg" );
@@ -77,7 +79,9 @@ void Level::loadSkyDomeTextures()
 {
 	skydome_texture = driver->getTexture( media_folder + "skydome.jpg");
 }
+
 //////////////////////////end loads
+
 void Level::addSkyDome()
 {
 	skydome = smgr->addSkyDomeSceneNode( skydome_texture, 16, 8, 0.95f, 2.0f);
@@ -109,15 +113,14 @@ void Level::loadLevel()
 	SCamera = smgr->addCameraSceneNode(0, irr::core::vector3df(-50.0f,50.0f,0.0f) ,
 					   irr::core::vector3df(0.0f,0.0f,0.0f), -1);
 	addTerrainSceneNode();
-	addLightning();
+	addMainHero();
+	addCharacters();
+	
 //load
 	loadSkyBoxTextures();
 	loadSkyDomeTextures();
-//	addSkyBox();
-//	addSkyDome();
+	
 	driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
-	addMainHero();
-	addCharacters();
 	camera = new Camera(device);
 	camera->setFocusMesh(sydney->getAnimNode());        
 }
@@ -130,12 +133,12 @@ irr::scene::ITriangleSelector *Level::getTrSelector()
 void Level::run()
 {	 
 	sydney->Move(receiver);
-        		
 	camera->update();
 // add'ы
 	addSkyBox();
 	addSkyDome();
-//	
+	addLightning();
+
 	driver->beginScene(true, true, video::SColor(255,113,113,133));
 	smgr->drawAll();
 	device->getGUIEnvironment()->drawAll();
@@ -148,5 +151,7 @@ void Level::remove()
 {
 	skybox->remove();
 	skydome->remove();
+//	terrain->remove();
+	lamp->remove();
 }
 

@@ -17,8 +17,6 @@ public:
 	void oMove (AnimNode *obj, f32 x, f32 y, f32 z);
 	void Turn (AnimNode *obj, f32 x, f32 y, f32 z);
 	void Move(EventReceiver *receiver);
-	
-
 };
 
 #endif //MAIN_HERO_HPP

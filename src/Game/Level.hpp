@@ -25,14 +25,16 @@ private:
 	MainHero                              *sydney;
 	EventReceiver                         *receiver;
 	Camera                                *camera;
-	ITexture *Up;
-	ITexture *Down;
-	ITexture *Left;
-	ITexture *Right;
-	ITexture *Forward;
-	ITexture *Back;
-	ITexture *skydome_texture;
-	
+
+	ITexture                              *Up;
+	ITexture                              *Down;
+	ITexture                              *Left;
+	ITexture                              *Right;
+	ITexture                              *Forward;
+	ITexture                              *Back;
+	ITexture                              *skydome_texture;
+	ITexture                              *terrain_texture1;
+	ITexture                              *terrain_texture2;
 public:
 	Level(irr::IrrlichtDevice *_device);
 	void addTerrainSceneNode();
@@ -47,7 +49,9 @@ public:
 //loads
 	void loadSkyBoxTextures();
 	void loadSkyDomeTextures();
-	
+//	void loadTerrainTextures();
+//	void loadMainHeroTextures();
+
 	void run();
 	void remove();
 };

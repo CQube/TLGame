@@ -16,7 +16,6 @@ protected:
 public:
 	Character(irr::IrrlichtDevice *_device, const tl::path &mesh_path, const tl::path &texture_path, tl::vector3df position);
 	Character(irr::IrrlichtDevice *_device, const tl::path &mesh_path, tl::vector3df position, tl::ITriangleSelector *selector);
-
 	tl::AnimNode *getAnimNode();
 };
 
