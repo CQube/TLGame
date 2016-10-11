@@ -35,6 +35,10 @@ private:
 	ITexture                              *skydome_texture;
 	ITexture                              *terrain_texture1;
 	ITexture                              *terrain_texture2;
+	ITexture                              *MainHero_texture;
+	IAnimatedMesh                         *MainHero_mesh;
+	IAnimatedMesh                         *ninja_mesh;
+	IAnimatedMesh                         *dwarf_mesh;
 public:
 	Level(irr::IrrlichtDevice *_device);
 	void addTerrainSceneNode();
@@ -51,7 +55,8 @@ public:
 	void loadSkyDomeTextures();
 //	void loadTerrainTextures();
 //	void loadMainHeroTextures();
-
+	void loadCharacters();
+	void loadMainHero();
 	void run();
 	void remove();
 };
