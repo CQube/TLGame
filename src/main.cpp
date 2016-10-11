@@ -1,17 +1,17 @@
 #include <irrlicht/irrlicht.h>
 #include <irrlicht/driverChoice.h>
-#include "../headers/EventReceiver.h"
-#include "../headers/Camera.hpp"
-#include "../headers/Character.hpp"
-#include "../headers/typedefs.hpp"
-#include "../headers/Level.hpp"
-#include "../headers/MainHero.hpp"
+#include "InputReceiver.hpp"
+#include "typedefs.hpp"
+#include "Game/Camera.hpp"
+#include "Game/Character.hpp"
+#include "Game/Level.hpp"
+#include "Game/MainHero.hpp"
 
 using namespace tl;
 
 int main()
 {	
-	MyEventReceiver receiver;
+	InputReceiver receiver;
 	
 	IrrlichtDevice* device =
 		createDevice(EDT_OPENGL, core::dimension2d<u32>(640, 480),

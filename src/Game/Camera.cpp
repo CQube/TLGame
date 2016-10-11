@@ -1,4 +1,4 @@
-#include "../headers/Camera.hpp"
+#include "Camera.hpp"
 
 Camera::Camera(irr::IrrlichtDevice *_device)
 {
@@ -23,7 +23,7 @@ void Camera::update()
 	float changeY = (cursorPos.Y - 0.5f) * 256.0f;
 
 	direction  += changeX;
-	zdirection += changeY;
+	zdirection -= changeY;
 	if (zdirection < -90)
 		zdirection = -90;
 	else if (zdirection > 90)
@@ -34,9 +34,9 @@ void Camera::update()
 	irr::core::vector3df playerPos = focus_node->getPosition();
 
 	irr::core::vector3df newCameraPos;
-        newCameraPos.X = playerPos.X - cos(degToRad(direction)) * 64.0f;
-        newCameraPos.Y = playerPos.Y - sin(degToRad(zdirection)) * 64.0f;
-        newCameraPos.Z = playerPos.Z + sin(degToRad(direction)) * 64.0f;
+        newCameraPos.X = playerPos.X - cos(degToRad(direction)) * 128.0f;
+        newCameraPos.Y = playerPos.Y - sin(degToRad(zdirection)) * 128.0f;
+        newCameraPos.Z = playerPos.Z + sin(degToRad(direction)) * 128.0f;
 	
 	camera->setPosition(newCameraPos);
 	camera->setTarget(playerPos);

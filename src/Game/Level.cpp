@@ -1,5 +1,5 @@
-#include "../headers/Level.hpp"
-#include "../headers/Camera.hpp"
+#include "Level.hpp"
+#include "Camera.hpp"
 
 Level::Level(irr::IrrlichtDevice *_device)
 {
@@ -15,7 +15,7 @@ Level::Level(irr::IrrlichtDevice *_device)
 	meta = NULL;
 	anim = NULL;
 	terrain = NULL;
-	receiver = (MyEventReceiver *)device->getEventReceiver();
+	receiver = (InputReceiver *)device->getEventReceiver();
 }
 
 void Level::addTerrainSceneNode()

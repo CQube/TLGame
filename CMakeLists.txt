@@ -3,8 +3,9 @@ cmake_minimum_required(VERSION 2.8)
 project( TLGame )
 
 file( GLOB SOURCES "./src/Game/*.cpp"
-	  	  "./src/headers/*.hpp"
-	  	  "./src/headers/*.h" )
+	  	   "./src/Game/*.hpp"
+	  	   "./src/*.cpp"
+		   "./src/*.hpp")
 		  
 set( CMAKE_CXX_FLAGS "-std=c++0x" )
 
