@@ -111,10 +111,10 @@ void Level::loadCharacters()
 
 void Level::addCharacters()
 {
-        Character *ninja = new Character(device, ninja_mesh, vector3df(3071, 400, 1970), selector);
-        AnimNode *node_ninja = ninja->getAnimNode();
+        ninja = new Character(device, ninja_mesh, vector3df(3071, 400, 1970), selector);
+//        AnimNode *node_ninja = ninja->getAnimNode();
 	
-	Character *dwarf = new Character(device, dwarf_mesh, vector3df(2760, 480, 3705), selector);
+	dwarf = new Character(device, dwarf_mesh, vector3df(2760, 480, 3705), selector);
         AnimNode *node_dwarf = dwarf->getAnimNode();
 	node_dwarf->setRotation(vector3df(0, 20, 0));
 }
@@ -127,7 +127,7 @@ void Level::loadLevel()
 	loadCharacters();
 	addTerrainSceneNode();
 	addMainHero();
-	addCharacters();
+//	addCharacters();
 	
 //load
 	loadSkyBoxTextures();
@@ -145,13 +145,14 @@ irr::scene::ITriangleSelector *Level::getTrSelector()
 
 void Level::run()
 {	 
-	sydney->Move(receiver);
-	camera->update();
+        camera->update();
 // add'ы
 	addSkyBox();
 	addSkyDome();
 	addLightning();
-
+	addCharacters();
+	sydney->Move(receiver);
+		
 	driver->beginScene(true, true, video::SColor(255,113,113,133));
 	smgr->drawAll();
 	device->getGUIEnvironment()->drawAll();
@@ -166,5 +167,7 @@ void Level::remove()
 	skydome->remove();
 //	terrain->remove();
 	lamp->remove();
+	ninja->remove();
+	dwarf->remove();
 }
 

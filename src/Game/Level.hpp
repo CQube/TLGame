@@ -39,6 +39,9 @@ private:
 	IAnimatedMesh                         *MainHero_mesh;
 	IAnimatedMesh                         *ninja_mesh;
 	IAnimatedMesh                         *dwarf_mesh;
+	Character                             *ninja;
+	Character                             *dwarf;
+	
 public:
 	Level(irr::IrrlichtDevice *_device);
 	void addTerrainSceneNode();

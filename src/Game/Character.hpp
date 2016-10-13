@@ -17,6 +17,7 @@ public:
 	Character(irr::IrrlichtDevice *_device, IAnimatedMesh *_mesh, ITexture *_texture, tl::vector3df position);
 	Character(irr::IrrlichtDevice *_device, IAnimatedMesh *_mesh, tl::vector3df position, tl::ITriangleSelector *selector);
 	tl::AnimNode *getAnimNode();
+        void remove();
 };
 
 

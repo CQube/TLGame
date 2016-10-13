@@ -47,3 +47,8 @@ tl::AnimNode *Character::getAnimNode()
 {
 	return node;
 }
+
+void Character::remove()
+{
+	node->remove();
+}
